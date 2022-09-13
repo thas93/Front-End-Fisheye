@@ -8,6 +8,12 @@
     margin: 0 100px;
 }
 
+.photographer_location{
+
+    display: flex;
+    flex-direction: row;
+}
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
