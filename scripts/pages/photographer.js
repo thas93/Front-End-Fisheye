@@ -1,37 +1,122 @@
-//Mettre le code JavaScript lié à la page photographer.html
 
-// GET PHOGRAPHERS DATA FROM JSON FILE
-async function getPhotographers() {   
-    try {
-      const recup = await fetch('./data/photographers.json');
-      return await recup.json();
-      
-    } catch (error) {
-      console.log(error);
+/***EXTRACT ID FROM URL**************************************************************/
+const takeId = window.location.search;
+    // console.log(takeId);
+const extractId = new URLSearchParams(takeId);
+    // console.log(extractId);
+const photographerId = extractId.get("id");
+    // console.log(photographerId);
+
+/***************************************************************************************/
+
+/***DISPLAY PHOTOGRAPHER INFO********************************************************/
+
+let infoPhotographer = "";
+let photographerArray = [];
+
+async function fetchData() {
+  await fetch("./data/photographers.json")
+    .then((res) => res.json())
+    .then((promise) => {photographerArray = promise.photographers});
+ 
+  photographerArray.filter((photographerElement) => {
+    if (photographerElement.id == photographerId) {
+      infoPhotographer = photographerElement;     
     }
+  });
+  
+  const pName = document.getElementById('pName');
+  pName.textContent = infoPhotographer.name;
+
+  const pLocation = document.getElementById('pLocation');
+  pLocation .textContent = infoPhotographer.city + "," + " " + infoPhotographer.country;
+      
+  const pTag = document.getElementById('pTag');
+  pTag .textContent = infoPhotographer.tagline;
+      
+  const picture = `assets/photographers/${infoPhotographer.portrait}`;
+
+  const pImg = document.getElementById('pImg');
+  pImg.setAttribute("src", picture);  
+};
+
+fetchData();
+
+/**************************************************************************************** */
+
+/***DISPLAY PHOTOGRAPHER MEDIAS*****************************************************/
+let mediaArray = [];
+let infoMedia = [];
+
+async function fetchMedia() {
+  await fetch("./data/photographers.json")
+    .then((res) => res.json())
+    .then((promise) => {mediaArray = promise.media});
     
-  }
-  getPhotographers;
-  // DISPLAY PHOTOGRAPHERS CARDS
-  async function displayData(photographers) {
-      const photographersHeader = document.querySelector(".photograph-header");
+    mediaArray.filter((photographerMedia) => {
+      if (photographerMedia.photographerId == photographerId) {
+        infoMedia.push(photographerMedia);
+        console.log(infoMedia);       
+       }     
+  });
   
-      photographers.forEach((photographer) => {
-          const persoPhotographerModel = photographerPersoFactory(photographer);
-          const PhotographCardDOM = photographerModel.getphotographCardDOM();
-          photographersSection.appendChild(PhotographCardDOM);
-      });
-  };
-  
-  async function init() {
-      const {photographers} = await getPhotographers();
-      displayData(photographers);
-  };
-  
-  init();
-  
-  
-  
-  
-  
-  
+  infoMedia.forEach((photographerMedia) => {
+    const pictures = `assets/medias/${photographerMedia.image}`;   
+    const video = `assets/medias/${photographerMedia.video}`;
+    
+    const title = photographerMedia.title;
+
+    const mediaSection = document.getElementById('media-section')
+      
+    const mediaElements = document.createElement('div')
+    mediaElements.classList.add('mediaElements')
+
+    if (photographerMedia = photographerMedia.image){
+        const mediaContent = document.createElement('img')
+        mediaContent.classList.add('mediaContent')
+        mediaContent.setAttribute("src", pictures);
+        mediaElements.appendChild(mediaContent) 
+    } else {
+        const mediaContent = document.createElement('video')
+        mediaContent.classList.add('videoContent')
+        mediaContent.setAttribute("src", video);
+        mediaElements.appendChild(mediaContent) 
+      }
+
+        const mediaDetails = document.createElement('div')
+        mediaDetails.classList.add('mediaDetails')
+
+        const mediaTitle = document.createElement('h2')
+        mediaTitle.classList.add('mediaTitle')
+        mediaTitle.textContent = title;
+      
+        const mediaLike = document.createElement('div')
+        mediaLike.classList.add('mediaLike')
+
+        mediaSection.appendChild(mediaElements)     
+        mediaElements.appendChild(mediaDetails)
+        mediaDetails.appendChild(mediaTitle)
+        mediaDetails.appendChild(mediaLike)
+  }); 
+};  
+
+fetchMedia();
+
+  /***********************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

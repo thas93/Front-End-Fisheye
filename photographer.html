@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -12,14 +13,23 @@
       <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
-      <div class="photograph-header">
-        
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
+      <div class="photographer-header">
+        <div class="pInformation">
+          <h2 id="pName"></h2>
+          <h3 id ="pLocation"></h3>
+          <h3 id ="pTag"></h3>
+        </div>          
+          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+          <img src="" alt="" id="pImg">
+        </div>
+        <div id="media-section">
+          
+        </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
+          
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>

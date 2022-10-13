@@ -2,14 +2,59 @@
     display: none;
 }
 
-.photograph-header {
+header .logo {
+    height: 50px;
+    margin-left: 100px;
+}
+.photographer-header {
     background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+    border-radius: 5px;
+    width: 1240px;
+    height: 313px;
+    margin: 0px 100px 0px 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+}
+
+#pName{
+    margin-left: 50px;
+    margin-top: 71px;
+    margin-bottom: 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 83px;
+    color: #D3573C;
+}
+
+#pLocation{
+    margin-left: 50px;
+    margin-top: 16px;
+    margin-bottom: 19px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    color: #901C1C;
+}
+
+#pTag{
+    margin-left: 50px;
+    margin-top: 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #525252;
+}
+
+#pImg{
+    margin-right: 50px; 
 }
 
 .photographer_location{
-
     display: flex;
     flex-direction: row;
 }
@@ -80,3 +125,68 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+main img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+main h2 {
+    font-size: 35px;
+    color: #901C1C;    
+}
+
+main #media-section{
+width: 1240px;
+margin: 100px 100px 0px 100px;
+display: flex;
+flex-wrap: wrap;
+justify-content:space-between;
+align-content: space-between;
+}
+
+
+
+.mediaElements{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    
+}
+
+.mediaElements .mediaContent {
+    
+    height: 300px;
+    width: 350px;
+    border-radius: 5px;
+    object-fit: cover;
+
+}
+
+.mediaElements .videoContent{
+    height: 300px;
+    width: 350px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.mediaDetails {
+    display: flex;
+    flex-direction: row;
+}
+
+.mediaDetails .mediaTitle {
+    height: 31px;
+    width: 292;  
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    color: #901C1C;
+}
+
+
+
