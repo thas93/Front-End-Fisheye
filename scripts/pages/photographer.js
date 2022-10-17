@@ -63,8 +63,9 @@ async function fetchMedia() {
   infoMedia.forEach((photographerMedia) => {
     const pictures = `assets/medias/${photographerMedia.image}`;   
     const video = `assets/medias/${photographerMedia.video}`;
-    
+    const likeSvg = `assets/images/likesvg.svg`;
     const title = photographerMedia.title;
+    const like = photographerMedia.likes;
 
     const mediaSection = document.getElementById('media-section')
       
@@ -82,7 +83,6 @@ async function fetchMedia() {
         mediaContent.setAttribute("src", video);
         mediaElements.appendChild(mediaContent) 
       }
-
         const mediaDetails = document.createElement('div')
         mediaDetails.classList.add('mediaDetails')
 
@@ -90,13 +90,22 @@ async function fetchMedia() {
         mediaTitle.classList.add('mediaTitle')
         mediaTitle.textContent = title;
       
+        const likeElements = document.createElement('div')
+        likeElements.classList.add('likeElements')
         const mediaLike = document.createElement('div')
         mediaLike.classList.add('mediaLike')
+        mediaLike.textContent = like;
 
+        const likeLogo = document.createElement('img')
+        likeLogo.classList.add('likeLogo')
+        likeLogo.setAttribute("src", likeSvg)
+       
         mediaSection.appendChild(mediaElements)     
         mediaElements.appendChild(mediaDetails)
         mediaDetails.appendChild(mediaTitle)
-        mediaDetails.appendChild(mediaLike)
+        mediaDetails.appendChild(likeElements)
+        likeElements.appendChild(mediaLike)
+        likeElements.appendChild(likeLogo)
   }); 
 };  
 

@@ -47,7 +47,7 @@ h1 {
     color: #D3573C;
 }
 
-.photographer_section article h3  {
+.photographer_section article .photographer_loc  {
     font-weight: 400;
     font-size: 13px;
     line-height: 17px;

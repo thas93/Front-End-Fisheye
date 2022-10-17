@@ -26,15 +26,15 @@ function photographerFactory(data) {
         
         const locationTag = document.createElement('h3') // Location creation
         locationTag.textContent = city + "," + " " + country;
-        
+        locationTag.classList.add("photographer_loc")
     
         const taglineTag = document.createElement('h3'); // Tagline creation
         taglineTag.textContent = tagline;
-        taglineTag.classList.add("class=photographer_tag");
+        taglineTag.classList.add("photographer_tag");
         
         const priceTag = document.createElement('h3'); // Price creation
         priceTag.textContent = price + "€/jour";
-        priceTag.classList.add("class=photographer_price");
+        priceTag.classList.add("photographer_price");
   
        
         article.appendChild(img);

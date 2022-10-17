@@ -139,7 +139,7 @@ main h2 {
 }
 
 main #media-section{
-width: 1240px;
+width: 100%;
 margin: 100px 100px 0px 100px;
 display: flex;
 flex-wrap: wrap;
@@ -175,6 +175,8 @@ align-content: space-between;
 .mediaDetails {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .mediaDetails .mediaTitle {
@@ -187,6 +189,34 @@ align-content: space-between;
     line-height: 31px;
     color: #901C1C;
 }
+
+.mediaDetails .likeElements {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+
+
+.mediaDetails .mediaLike {
+    height: 31px;
+    width: 292;  
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    text-align: right;
+    color: #911C1C;
+}
+
+.mediaDetails .likeLogo {
+    height: 18.35px;
+    width: 17.5px; 
+}
+
+
 
 
 
