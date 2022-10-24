@@ -1,21 +1,37 @@
+
 #contact_modal {
     display: none;
 }
 
+body{    
+    font-family: "DM Sans", sans-serif;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+/********************************HEADER*****************************************/
 header .logo {
     height: 50px;
-    margin-left: 100px;
+    margin-top: 30px;
+    margin-bottom: 50px;    
 }
 .photographer-header {
-    background-color: #FAFAFA;
+    background-color: #e4dede;
     border-radius: 5px;
-    width: 1240px;
+    width: 100%;
     height: 313px;
-    margin: 0px 100px 0px 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
+}
+
+main img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 #pName{
@@ -71,7 +87,9 @@ header .logo {
     border-radius: 5px;
     cursor: pointer;
 }
+/*******************************************************************************/
 
+/************************************FORM***************************************/
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -82,6 +100,7 @@ header .logo {
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    position: absolute;
 }
 
 .modal header {
@@ -126,13 +145,6 @@ form input {
     border-radius: 5px;
 }
 
-main img {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
 main h2 {
     font-size: 35px;
     color: #901C1C;    
@@ -140,14 +152,11 @@ main h2 {
 
 main #media-section{
 width: 100%;
-margin: 100px 100px 0px 100px;
 display: flex;
 flex-wrap: wrap;
 justify-content:space-between;
 align-content: space-between;
 }
-
-
 
 .mediaElements{
     display: flex;
@@ -156,13 +165,11 @@ align-content: space-between;
     
 }
 
-.mediaElements .mediaContent {
-    
+.mediaElements .mediaContent {    
     height: 300px;
     width: 350px;
     border-radius: 5px;
     object-fit: cover;
-
 }
 
 .mediaElements .videoContent{
@@ -197,8 +204,6 @@ align-content: space-between;
   justify-content: space-between; 
 }
 
-
-
 .mediaDetails .mediaLike {
     height: 31px;
     width: 292;  
@@ -215,6 +220,57 @@ align-content: space-between;
     height: 18.35px;
     width: 17.5px; 
 }
+
+body #smallBoxContent{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+
+body #smallBoxContent{
+    height: 89px;
+    width: 376px;
+    background: #DB8876;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: flex-end;
+    align-self: flex-end; 
+    
+}
+
+body #smallBoxContent .boxPrice{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+/*************************************LIGHT-BOX**********************************/
+
+/* main .lightBox{
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #312E2E;
+    display: flex;
+}
+
+main .lightBox .leftButon{
+    display: flex;
+    justify-content: flex-end;
+    justify-items: flex-end;
+} */
+
+/******************************************************************************/
 
 
 

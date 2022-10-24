@@ -2,7 +2,7 @@
 <html>
   <head>
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="css/style.css" rel="stylesheet" type="text/css" /> -->
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -21,15 +21,23 @@
         </div>          
           <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
           <img src="" alt="" id="pImg">
-        </div>
-        <div id="media-section">
-          
-        </div>
-    </main>
+      </div>
+        <div id="media-section"></div>
+
+<!-- ************************************LIGHT-BOX**************************** -->
+      <!-- <div class="lightBox">
+        <img class="rightButon" src="/assets/images/butons/right-buton.svg" alt="">
+        <img class="" src="" alt="">
+        <img class="leftButon" src="/assets/images/butons/left-buton.svg" alt="">
+        <img class="closeButon" src="/assets/images/butons/close-buton.svg" alt="">
+        <div class="imgTitle"></div>
+      </div> -->
+<!-- ************************************LIGHT-BOX**************************** -->
+    
+</main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
@@ -42,6 +50,17 @@
 				</form>
 			</div>
 		</div>
+<!--********************************** SMAL-BOX******************************* -->
+
+<div id="smallBoxContent">
+  
+</div>
+
+
+<!--***************************************************************************-->
+
+
+
     <script src="scripts/factories/photographer.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

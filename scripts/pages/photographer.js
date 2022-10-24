@@ -6,6 +6,7 @@ const extractId = new URLSearchParams(takeId);
     // console.log(extractId);
 const photographerId = extractId.get("id");
     // console.log(photographerId);
+ 
 
 /***************************************************************************************/
 
@@ -25,6 +26,7 @@ async function fetchData() {
     }
   });
   
+  
   const pName = document.getElementById('pName');
   pName.textContent = infoPhotographer.name;
 
@@ -37,7 +39,15 @@ async function fetchData() {
   const picture = `assets/photographers/${infoPhotographer.portrait}`;
 
   const pImg = document.getElementById('pImg');
-  pImg.setAttribute("src", picture);  
+  pImg.setAttribute("src", picture);
+
+  const smallBoxContent = document.getElementById('smallBoxContent')
+
+  const smallPhotographerPrice = document.createElement('div')
+  smallPhotographerPrice.classList.add('boxPrice')
+  smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour" 
+  smallBoxContent.appendChild(smallPhotographerPrice)
+
 };
 
 fetchData();
@@ -47,31 +57,52 @@ fetchData();
 /***DISPLAY PHOTOGRAPHER MEDIAS*****************************************************/
 let mediaArray = [];
 let infoMedia = [];
+let allInfo = [];
+let likeArray = []; 
+
 
 async function fetchMedia() {
   await fetch("./data/photographers.json")
     .then((res) => res.json())
-    .then((promise) => {mediaArray = promise.media});
-    
+    .then((promise) => {allInfo = promise})
+    mediaArray = allInfo.media
+   
     mediaArray.filter((photographerMedia) => {
-      if (photographerMedia.photographerId == photographerId) {
+      if (photographerMedia.photographerId == photographerId) { 
         infoMedia.push(photographerMedia);
-        console.log(infoMedia);       
+        likeArray.push(photographerMedia.likes)  
        }     
   });
+
+  let sumLikes = likeArray.reduce((a, b) => {
+      return a + b;
+  });
+ 
+  const smallBoxContent = document.getElementById('smallBoxContent')
+  const likeAdd = document.createElement('div')
+        likeAdd.classList.add('likeAdd')
+        likeAdd.textContent = sumLikes;
+        const likeSvg = `assets/images/butons/likesvg.svg`;
+  const smallLogo = document.createElement('img')
+        smallLogo.classList.add('smallLogo')
+        smallLogo.setAttribute("src", likeSvg)
+  
+  smallBoxContent.appendChild(likeAdd)
+  smallBoxContent.appendChild(smallLogo)
   
   infoMedia.forEach((photographerMedia) => {
     const pictures = `assets/medias/${photographerMedia.image}`;   
     const video = `assets/medias/${photographerMedia.video}`;
-    const likeSvg = `assets/images/likesvg.svg`;
+    const likeSvg = `assets/images/butons/likesvg.svg`;
     const title = photographerMedia.title;
     const like = photographerMedia.likes;
+    
 
     const mediaSection = document.getElementById('media-section')
       
     const mediaElements = document.createElement('div')
     mediaElements.classList.add('mediaElements')
-
+     
     if (photographerMedia = photographerMedia.image){
         const mediaContent = document.createElement('img')
         mediaContent.classList.add('mediaContent')
@@ -99,13 +130,16 @@ async function fetchMedia() {
         const likeLogo = document.createElement('img')
         likeLogo.classList.add('likeLogo')
         likeLogo.setAttribute("src", likeSvg)
-       
+
         mediaSection.appendChild(mediaElements)     
         mediaElements.appendChild(mediaDetails)
         mediaDetails.appendChild(mediaTitle)
         mediaDetails.appendChild(likeElements)
         likeElements.appendChild(mediaLike)
         likeElements.appendChild(likeLogo)
+        
+        
+       
   }); 
 };  
 
