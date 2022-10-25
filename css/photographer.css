@@ -151,18 +151,19 @@ main h2 {
 }
 
 main #media-section{
-width: 100%;
-display: flex;
-flex-wrap: wrap;
-justify-content:space-between;
-align-content: space-between;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    align-content: space-between;
+    position: relative;
 }
 
 .mediaElements{
     display: flex;
     flex-direction: column;
     align-content: space-around;
-    
+    position: relative;
 }
 
 .mediaElements .mediaContent {    
@@ -170,6 +171,7 @@ align-content: space-between;
     width: 350px;
     border-radius: 5px;
     object-fit: cover;
+    position: relative;
 }
 
 .mediaElements .videoContent{
@@ -177,6 +179,7 @@ align-content: space-between;
     width: 350px;
     border-radius: 5px;
     object-fit: cover;
+    position: relative;
 }
 
 .mediaDetails {
@@ -255,20 +258,73 @@ body #smallBoxContent .boxPrice{
 
 /*************************************LIGHT-BOX**********************************/
 
-/* main .lightBox{
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: #312E2E;
-    display: flex;
+#lightBox{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #fffefe;
 }
 
-main .lightBox .leftButon{
+#lightBox .lightBoxContent{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 95%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+#lightBox img{
+    width: 90%;
+    height: 90%;
+    border-radius: 5px;    
+}
+
+#lightBox .leftButon{
     display: flex;
     justify-content: flex-end;
     justify-items: flex-end;
-} */
+    opacity: 0.5;
+    height: 29.64px;
+    width: 48px;
+    cursor: pointer;
+    transition: .3s; 
+}
+
+#lightBox .rightButon{
+    display: flex;
+    justify-content: flex-end;
+    justify-items: flex-end;
+    align-items: center;
+    opacity: 0.5;
+    height: 29.64px;
+    width: 48px;
+    cursor: pointer;
+    transition: .3s; 
+}
+
+#lightBox .lightBoxContent .closeButon {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    justify-items: flex-end;
+    align-items: center;
+    height: 42px;
+    width: 42px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: .3s;   
+}
+
+#lightBox .leftButon:hover,
+#lightBox .rightButon:hover,
+#lightBox .lightBoxContent .closeButon:hover {
+    opacity: 1;
+}
+
 
 /******************************************************************************/
 
