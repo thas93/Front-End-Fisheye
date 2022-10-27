@@ -138,12 +138,56 @@ async function fetchMedia() {
         likeElements.appendChild(mediaLike)
         likeElements.appendChild(likeLogo)
         
-        
-       
-  }); 
+        const gallerys = document.getElementsByClassName('mediaContent')
+
+        for(const gallery of gallerys){
+          console.log(gallery);
+          gallery.addEventListener('click', function (e){
+            e.preventDefault();
+            modal.classList.remove('hidden')
+            
+          })
+        }
+  });
 };  
 
-fetchMedia();
+fetchMedia(); 
+/*******************************LIGHT-BOX**********************************************/
+
+  
+  
+
+
+  
+    // On ajoute l'écouteur click sur les liens
+//     gallery.forEach((photographerMedia) => {
+//         link.addEventListener("click", function(e){
+//             // On désactive le comportement des liens
+//             e.preventDefault();
+
+//             // On ajoute l'image du lien cliqué dans la modale
+//             const image = modale.querySelector(".modal-content img");
+//             image.src = this.href;
+
+//             // On affiche la modale
+//             modale.classList.add("show");
+//         });
+   
+    
+//     // On active le bouton close
+//     close.addEventListener("click", function(){
+//         modale.classList.remove("show");
+//     });
+
+//     // On ferme au clic sur la modale
+//     modale.addEventListener("click", function(){
+//         modale.classList.remove("show");
+//     });
+
+/*******************************LIGHT-NBOX**********************************************/
+
+   
+
 
   /***********************************************************************************/
 

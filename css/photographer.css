@@ -172,6 +172,7 @@ main #media-section{
     border-radius: 5px;
     object-fit: cover;
     position: relative;
+    cursor: pointer;
 }
 
 .mediaElements .videoContent{
@@ -180,6 +181,7 @@ main #media-section{
     border-radius: 5px;
     object-fit: cover;
     position: relative;
+    cursor: pointer;
 }
 
 .mediaDetails {
@@ -204,7 +206,8 @@ main #media-section{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
+  cursor: pointer; 
 }
 
 .mediaDetails .mediaLike {
@@ -217,6 +220,7 @@ main #media-section{
     line-height: 31px;
     text-align: right;
     color: #911C1C;
+    
 }
 
 .mediaDetails .likeLogo {
@@ -265,6 +269,11 @@ body #smallBoxContent .boxPrice{
     left: 0;
     bottom: 0;
     background-color: #fffefe;
+    
+}
+
+.hidden{
+    visibility: hidden;
 }
 
 #lightBox .lightBoxContent{
