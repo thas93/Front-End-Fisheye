@@ -286,10 +286,11 @@ body #smallBoxContent .boxPrice{
     align-items: center;
 }
 
-#lightBox img{
+#modalImg{
     width: 90%;
     height: 90%;
-    border-radius: 5px;    
+    border-radius: 5px;
+    object-fit:contain;    
 }
 
 #lightBox .leftButon{

@@ -137,17 +137,48 @@ async function fetchMedia() {
         mediaDetails.appendChild(likeElements)
         likeElements.appendChild(mediaLike)
         likeElements.appendChild(likeLogo)
-        
-        const gallerys = document.getElementsByClassName('mediaContent')
 
-        for(const gallery of gallerys){
-          console.log(gallery);
+
+/**********************************LIGHT-BOX******************************************************/         
+        const gallerys = document.getElementsByClassName('mediaContent')
+        const imagesTitles = document.getElementsByClassName('mediaTitle')
+        // console.log(imagesTitles);
+        const modal = document.getElementById('lightBox')       
+        const lightBoxImg = document.getElementById('modalImg')
+        const lightBoxTitle = document.getElementById('lightBoxImgTitle')
+        
+        const next = document.getElementsByClassName('leftButon')
+        const prev = document.getElementsByClassName('rightButon')
+        const close = document.getElementsByClassName('closeButon')[0]
+
+        for(const gallery of gallerys){ 
           gallery.addEventListener('click', function (e){
             e.preventDefault();
+            const setImg = gallery.getAttribute('src')      
             modal.classList.remove('hidden')
-            
+            lightBoxImg.setAttribute('src', setImg)
           })
         }
+
+        for(const imagesTitle of imagesTitles){ 
+          
+          imagesTitle.addEventListener('click', function (e){
+            e.preventDefault();
+            console.log(imagesTitle);
+           
+            // console.log(setTitle);
+          })
+        }
+
+
+
+
+        close.addEventListener('click', function (e){
+                e.preventDefault();
+                modal.classList.add('hidden')
+                lightBoxImg.setAtr
+          
+              })
   });
 };  
 
