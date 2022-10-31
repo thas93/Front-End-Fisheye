@@ -119,6 +119,7 @@ async function fetchMedia() {
 
         const mediaTitle = document.createElement('h2')
         mediaTitle.classList.add('mediaTitle')
+        mediaTitle.setAttribute('id', 'mediaT')
         mediaTitle.textContent = title;
       
         const likeElements = document.createElement('div')
@@ -142,7 +143,7 @@ async function fetchMedia() {
 /**********************************LIGHT-BOX******************************************************/         
         const gallerys = document.getElementsByClassName('mediaContent')
         const imagesTitles = document.getElementsByClassName('mediaTitle')
-        // console.log(imagesTitles);
+        const mediaBlocks = document.getElementsByClassName('mediaElements')
         const modal = document.getElementById('lightBox')       
         const lightBoxImg = document.getElementById('modalImg')
         const lightBoxTitle = document.getElementById('lightBoxImgTitle')
@@ -157,27 +158,26 @@ async function fetchMedia() {
             const setImg = gallery.getAttribute('src')      
             modal.classList.remove('hidden')
             lightBoxImg.setAttribute('src', setImg)
-          })
-        }
-
-        for(const imagesTitle of imagesTitles){ 
           
-          imagesTitle.addEventListener('click', function (e){
-            e.preventDefault();
-            console.log(imagesTitle);
-           
-            // console.log(setTitle);
           })
         }
 
-
-
+        for(const mediaBlock of mediaBlocks){ 
+          
+          mediaBlock.addEventListener('click', function (e){
+            e.preventDefault();
+            const lBt = document.getElementById('mediaT')
+            console.log(lBt);
+             
+            
+                    
+            
+          })
+        }
 
         close.addEventListener('click', function (e){
                 e.preventDefault();
-                modal.classList.add('hidden')
-                lightBoxImg.setAtr
-          
+                modal.classList.add('hidden')        
               })
   });
 };  
