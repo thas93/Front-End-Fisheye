@@ -82,13 +82,13 @@ async function fetchMedia() {
   const likeAdd = document.createElement('div')
         likeAdd.classList.add('likeAdd')
         likeAdd.textContent = sumLikes;
-        const likeSvg = `assets/images/butons/likesvg.svg`;
+  const likeSvg = `assets/images/butons/likesvg.svg`;
   const smallLogo = document.createElement('img')
         smallLogo.classList.add('smallLogo')
         smallLogo.setAttribute("src", likeSvg)
   
-  smallBoxContent.appendChild(likeAdd)
-  smallBoxContent.appendChild(smallLogo)
+        smallBoxContent.appendChild(likeAdd)
+        smallBoxContent.appendChild(smallLogo)
   
   infoMedia.forEach((photographerMedia) => {
     const pictures = `assets/medias/${photographerMedia.image}`;   
@@ -142,13 +142,12 @@ async function fetchMedia() {
 
 /**********************************LIGHT-BOX******************************************************/         
         const gallerys = document.getElementsByClassName('mediaContent')
-        const imagesTitles = document.getElementsByClassName('mediaTitle')
-        const mediaBlocks = document.getElementsByClassName('mediaElements')
+        const mElements = document.getElementsByClassName('mediaElements')
         const modal = document.getElementById('lightBox')       
         const lightBoxImg = document.getElementById('modalImg')
-        const lightBoxTitle = document.getElementById('lightBoxImgTitle')
-        
+        const lightBoxTitle = document.getElementById('lightBoxImgTitle')     
         const next = document.getElementsByClassName('leftButon')
+        console.log(next);
         const prev = document.getElementsByClassName('rightButon')
         const close = document.getElementsByClassName('closeButon')[0]
 
@@ -158,27 +157,28 @@ async function fetchMedia() {
             const setImg = gallery.getAttribute('src')      
             modal.classList.remove('hidden')
             lightBoxImg.setAttribute('src', setImg)
-          
+                     
           })
         }
 
-        for(const mediaBlock of mediaBlocks){ 
-          
-          mediaBlock.addEventListener('click', function (e){
+        for(const mElement of mElements){           
+          mElement.addEventListener('click', function (e){
             e.preventDefault();
-            const lBt = document.getElementById('mediaT')
-            console.log(lBt);
-             
-            
-                    
-            
+            const elementTitle = mElement.querySelector('.mediaTitle').textContent
+            lightBoxTitle.innerHTML = elementTitle            
           })
         }
 
         close.addEventListener('click', function (e){
-                e.preventDefault();
-                modal.classList.add('hidden')        
-              })
+              e.preventDefault();
+              modal.classList.add('hidden')        
+        })
+
+    //     next.addEventListener('click', function (e){
+    //       e.preventDefault();
+                
+    // })
+
   });
 };  
 
