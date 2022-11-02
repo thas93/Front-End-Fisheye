@@ -126,6 +126,7 @@ async function fetchMedia() {
         likeElements.classList.add('likeElements')
         const mediaLike = document.createElement('div')
         mediaLike.classList.add('mediaLike')
+        mediaLike.setAttribute('id', 'mLike')
         mediaLike.textContent = like;
 
         const likeLogo = document.createElement('img')
@@ -146,10 +147,20 @@ async function fetchMedia() {
         const modal = document.getElementById('lightBox')       
         const lightBoxImg = document.getElementById('modalImg')
         const lightBoxTitle = document.getElementById('lightBoxImgTitle')     
-        const next = document.getElementsByClassName('leftButon')
-        console.log(next);
+        const next = document.getElementsByClassName('leftButon')    
         const prev = document.getElementsByClassName('rightButon')
         const close = document.getElementsByClassName('closeButon')[0]
+        const likeHearts = document.getElementsByClassName('likeLogo')
+        const likeCount = document.getElementById('mLike').textContent
+        const likeCountNumber = Number(likeCount)
+        console.log(typeof "likeCountNumber")
+
+        for(const likeHeart of likeHearts ){
+          likeHeart.addEventListener('click', function (e){
+            e.preventDefault();
+            
+          } )
+        }
 
         for(const gallery of gallerys){ 
           gallery.addEventListener('click', function (e){
@@ -169,15 +180,24 @@ async function fetchMedia() {
           })
         }
 
-        close.addEventListener('click', function (e){
-              e.preventDefault();
-              modal.classList.add('hidden')        
-        })
+        // next.addEventListener('click', nextOne)
+        //   function nextOne (){
 
-    //     next.addEventListener('click', function (e){
-    //       e.preventDefault();
-                
-    // })
+        //   }
+        
+        
+        //   prev.addEventListener('click', previous )
+          
+                  
+        
+
+        close.addEventListener('click', function (e){
+          e.preventDefault();
+          modal.classList.add('hidden')        
+    }) 
+
+
+    
 
   });
 };  
@@ -190,38 +210,6 @@ fetchMedia();
 
 
   
-    // On ajoute l'écouteur click sur les liens
-//     gallery.forEach((photographerMedia) => {
-//         link.addEventListener("click", function(e){
-//             // On désactive le comportement des liens
-//             e.preventDefault();
-
-//             // On ajoute l'image du lien cliqué dans la modale
-//             const image = modale.querySelector(".modal-content img");
-//             image.src = this.href;
-
-//             // On affiche la modale
-//             modale.classList.add("show");
-//         });
-   
-    
-//     // On active le bouton close
-//     close.addEventListener("click", function(){
-//         modale.classList.remove("show");
-//     });
-
-//     // On ferme au clic sur la modale
-//     modale.addEventListener("click", function(){
-//         modale.classList.remove("show");
-//     });
-
-/*******************************LIGHT-NBOX**********************************************/
-
-   
-
-
-  /***********************************************************************************/
-
 
 
 
