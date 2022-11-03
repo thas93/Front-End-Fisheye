@@ -96,6 +96,7 @@ async function fetchMedia() {
     const likeSvg = `assets/images/butons/likesvg.svg`;
     const title = photographerMedia.title;
     const like = photographerMedia.likes;
+    let likeAmount = Number(like)
     
 
     const mediaSection = document.getElementById('media-section')
@@ -127,7 +128,7 @@ async function fetchMedia() {
         const mediaLike = document.createElement('div')
         mediaLike.classList.add('mediaLike')
         mediaLike.setAttribute('id', 'mLike')
-        mediaLike.textContent = like;
+        mediaLike.textContent = likeAmount
 
         const likeLogo = document.createElement('img')
         likeLogo.classList.add('likeLogo')
@@ -151,16 +152,35 @@ async function fetchMedia() {
         const prev = document.getElementsByClassName('rightButon')
         const close = document.getElementsByClassName('closeButon')[0]
         const likeHearts = document.getElementsByClassName('likeLogo')
-        const likeCount = document.getElementById('mLike').textContent
-        const likeCountNumber = Number(likeCount)
-        console.log(typeof "likeCountNumber")
+        // console.log(likeHearts);
+        let likeCounts = document.getElementsByClassName('mediaLike')
+        // console.table(likeCounts);
+        
+        for(const likeCount of likeCounts){
+          
+          likeCount
+        } 
+           
 
-        for(const likeHeart of likeHearts ){
+
+        for(const likeHeart of likeHearts){
           likeHeart.addEventListener('click', function (e){
             e.preventDefault();
-            
+            console.log(likeCount);
+          
           } )
-        }
+        } 
+
+        
+
+            // likeCountNumber++
+            // likeCounts = likeCountNumber.toString
+            // console.log(likeCountNumber)
+            // // console.log(likeCount);
+
+          
+       
+
 
         for(const gallery of gallerys){ 
           gallery.addEventListener('click', function (e){
