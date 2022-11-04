@@ -97,10 +97,7 @@ async function fetchMedia() {
     const title = photographerMedia.title;
     const like = photographerMedia.likes;
     let likeAmount = Number(like)
-    
-
-    const mediaSection = document.getElementById('media-section')
-      
+    const mediaSection = document.getElementById('media-section')  
     const mediaElements = document.createElement('div')
     mediaElements.classList.add('mediaElements')
      
@@ -144,81 +141,15 @@ async function fetchMedia() {
 
 /**********************************LIGHT-BOX******************************************************/         
         const gallerys = document.getElementsByClassName('mediaContent')
-        const mElements = document.getElementsByClassName('mediaElements')
-        const modal = document.getElementById('lightBox')       
-        const lightBoxImg = document.getElementById('modalImg')
-        const lightBoxTitle = document.getElementById('lightBoxImgTitle')     
-        const next = document.getElementsByClassName('leftButon')    
-        const prev = document.getElementsByClassName('rightButon')
-        const close = document.getElementsByClassName('closeButon')[0]
-        const likeHearts = document.getElementsByClassName('likeLogo')
-        // console.log(likeHearts);
-        let likeCounts = document.getElementsByClassName('mediaLike')
-        // console.table(likeCounts);
-        
-        for(const likeCount of likeCounts){
-          
-          likeCount
-        } 
-           
-
-
-        for(const likeHeart of likeHearts){
-          likeHeart.addEventListener('click', function (e){
-            e.preventDefault();
-            console.log(likeCount);
-          
-          } )
-        } 
-
-        
-
-            // likeCountNumber++
-            // likeCounts = likeCountNumber.toString
-            // console.log(likeCountNumber)
-            // // console.log(likeCount);
-
-          
-       
-
 
         for(const gallery of gallerys){ 
           gallery.addEventListener('click', function (e){
             e.preventDefault();
             const setImg = gallery.getAttribute('src')      
             modal.classList.remove('hidden')
-            lightBoxImg.setAttribute('src', setImg)
-                     
+            lightBoxImg.setAttribute('src', setImg)           
           })
-        }
-
-        for(const mElement of mElements){           
-          mElement.addEventListener('click', function (e){
-            e.preventDefault();
-            const elementTitle = mElement.querySelector('.mediaTitle').textContent
-            lightBoxTitle.innerHTML = elementTitle            
-          })
-        }
-
-        // next.addEventListener('click', nextOne)
-        //   function nextOne (){
-
-        //   }
-        
-        
-        //   prev.addEventListener('click', previous )
-          
-                  
-        
-
-        close.addEventListener('click', function (e){
-          e.preventDefault();
-          modal.classList.add('hidden')        
-    }) 
-
-
-    
-
+        } 
   });
 };  
 
@@ -226,10 +157,47 @@ fetchMedia();
 /*******************************LIGHT-BOX**********************************************/
 
   
-  
+const mElements = document.getElementsByClassName('mediaElements')
+const modal = document.getElementById('lightBox')       
+const lightBoxImg = document.getElementById('modalImg')
+const lightBoxTitle = document.getElementById('lightBoxImgTitle')     
+const next = document.getElementsByClassName('leftButon')[0]    
+const prev = document.getElementsByClassName('rightButon')[0]
+const close = document.getElementsByClassName('closeButon')[0]
+const likeHearts = document.getElementsByClassName('likeLogo')
+const likeCounts = document.getElementsByClassName('mediaLike')
 
+for(const likeHeart of likeHearts){
+  likeHeart.addEventListener('click', function (e){   
+    e.preventDefault();
+    console.log(likeHeart);
+  })
+}
 
+for(const mElement of mElements){           
+  mElement.addEventListener('click', function (e){
+    e.preventDefault();
+    const elementTitle = mElement.querySelector('.mediaTitle').textContent
+    lightBoxTitle.innerHTML = elementTitle            
+  })
+}
+
+next.addEventListener('click', function (e){
+    e.preventDefault();
+    console.log('next');       
+}) 
+
+prev.addEventListener('click', function (e){
+    e.preventDefault();
+    console.log('prev'); 
+}) 
   
+          
+
+close.addEventListener('click', function (e){
+  e.preventDefault();
+  modal.classList.add('hidden')        
+})  
 
 
 
