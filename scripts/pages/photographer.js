@@ -141,7 +141,8 @@ async function fetchMedia() {
 
 /**********************************LIGHT-BOX******************************************************/         
         const gallerys = document.getElementsByClassName('mediaContent')
-
+        const likeHearts = document.getElementsByClassName('likeLogo')
+        
         for(const gallery of gallerys){ 
           gallery.addEventListener('click', function (e){
             e.preventDefault();
@@ -149,7 +150,35 @@ async function fetchMedia() {
             modal.classList.remove('hidden')
             lightBoxImg.setAttribute('src', setImg)           
           })
-        } 
+        }
+        
+        for(const likeHeart of likeHearts){
+          likeHeart.addEventListener('click', function (e){   
+            e.preventDefault();
+            likeHeart.classList.add('liked')  
+            const heartSelect = e.target.parentElement.textContent
+            let likeNumberConvert = Number(heartSelect)
+           
+           
+            if (likeHeart){
+            
+            likeNumberConvert = likeNumberConvert+1
+                   
+            console.log(likeNumberConvert);  }  
+            
+            else{
+              likeNumberConvert = likeNumberConvert-1
+              
+              console.log(likeNumberConvert);        
+            }  
+                      
+          
+         
+          
+          
+          
+          })
+        }
   });
 };  
 
@@ -164,15 +193,9 @@ const lightBoxTitle = document.getElementById('lightBoxImgTitle')
 const next = document.getElementsByClassName('leftButon')[0]    
 const prev = document.getElementsByClassName('rightButon')[0]
 const close = document.getElementsByClassName('closeButon')[0]
-const likeHearts = document.getElementsByClassName('likeLogo')
 const likeCounts = document.getElementsByClassName('mediaLike')
 
-for(const likeHeart of likeHearts){
-  likeHeart.addEventListener('click', function (e){   
-    e.preventDefault();
-    console.log(likeHeart);
-  })
-}
+
 
 for(const mElement of mElements){           
   mElement.addEventListener('click', function (e){
