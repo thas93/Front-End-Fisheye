@@ -151,26 +151,24 @@ async function fetchMedia() {
             lightBoxImg.setAttribute('src', setImg)           
           })
         }
-        
+        let likeCker = false 
         for(const likeHeart of likeHearts){
           likeHeart.addEventListener('click', function (e){   
-            e.preventDefault();
-            likeHeart.classList.add('liked')  
-            const heartSelect = e.target.parentElement.textContent
+            e.preventDefault(); 
+            let heartSelect = e.target.parentElement.textContent
             let likeNumberConvert = Number(heartSelect)
-           
-           
-            if (likeHeart){
             
-            likeNumberConvert = likeNumberConvert+1
-                   
-            console.log(likeNumberConvert);  }  
+            likeCker = !likeCker
+            likeCker ? likeNumberConvert = likeNumberConvert+1 : likeNumberConvert = likeNumberConvert-0
+            likeString = likeNumberConvert.toString()
+            console.log(heartSelect);
+            heartSelect = likeString
+            console.log(likeString);
             
-            else{
-              likeNumberConvert = likeNumberConvert-1
-              
-              console.log(likeNumberConvert);        
-            }  
+            
+            
+            
+        
                       
           
          
