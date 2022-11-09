@@ -41,12 +41,7 @@ async function fetchData() {
   const pImg = document.getElementById('pImg');
   pImg.setAttribute("src", picture);
 
-  const smallBoxContent = document.getElementById('smallBoxContent')
-
-  const smallPhotographerPrice = document.createElement('div')
-  smallPhotographerPrice.classList.add('boxPrice')
-  smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour" 
-  smallBoxContent.appendChild(smallPhotographerPrice)
+  
 
 };
 
@@ -74,28 +69,55 @@ async function fetchMedia() {
        }     
   });
 
-  let sumLikes = likeArray.reduce((a, b) => {
+  infoMedia.forEach((photographerMedia) => {
+    displayMedia(photographerMedia)
+  });
+  
+    let sumLikes = likeArray.reduce((a, b) => {
       return a + b;
   });
  
   const smallBoxContent = document.getElementById('smallBoxContent')
-  const likeAdd = document.createElement('div')
+  let likeAdd = document.createElement('div')
         likeAdd.classList.add('likeAdd')
         likeAdd.textContent = sumLikes;
   const likeSvg = `assets/images/butons/likesvg.svg`;
   const smallLogo = document.createElement('img')
         smallLogo.classList.add('smallLogo')
         smallLogo.setAttribute("src", likeSvg)
-  
+  const smallPhotographerPrice = document.createElement('div')
+        smallPhotographerPrice.classList.add('boxPrice')
+        smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour" 
+        
         smallBoxContent.appendChild(likeAdd)
         smallBoxContent.appendChild(smallLogo)
+        smallBoxContent.appendChild(smallPhotographerPrice)
   
-  infoMedia.forEach((photographerMedia) => {
+/**********************************LIGHT-BOX******************************************************/         
+        const gallerys = document.getElementsByClassName('mediaContent')      
+        for(const gallery of gallerys){ 
+          gallery.addEventListener('click', function (e){
+            e.preventDefault();
+            const setImg = gallery.getAttribute('src')      
+            modal.classList.remove('hidden')
+            lightBoxImg.setAttribute('src', setImg)           
+          })
+        }
+        
+       
+  
+};  
+
+fetchMedia(); 
+
+function displayMedia(photographerMedia){
+  
+    
     const pictures = `assets/medias/${photographerMedia.image}`;   
     const video = `assets/medias/${photographerMedia.video}`;
     const likeSvg = `assets/images/butons/likesvg.svg`;
     const title = photographerMedia.title;
-    const like = photographerMedia.likes;
+    let like = photographerMedia.likes;
     let likeAmount = Number(like)
     const mediaSection = document.getElementById('media-section')  
     const mediaElements = document.createElement('div')
@@ -137,50 +159,33 @@ async function fetchMedia() {
         mediaDetails.appendChild(likeElements)
         likeElements.appendChild(mediaLike)
         likeElements.appendChild(likeLogo)
-
-
-/**********************************LIGHT-BOX******************************************************/         
-        const gallerys = document.getElementsByClassName('mediaContent')
-        const likeHearts = document.getElementsByClassName('likeLogo')
-        
-        for(const gallery of gallerys){ 
-          gallery.addEventListener('click', function (e){
-            e.preventDefault();
-            const setImg = gallery.getAttribute('src')      
-            modal.classList.remove('hidden')
-            lightBoxImg.setAttribute('src', setImg)           
-          })
-        }
-        let likeCker = false 
-        for(const likeHeart of likeHearts){
+       
+        const likeHeart = likeElements.getElementsByClassName('likeLogo')[0];
           likeHeart.addEventListener('click', function (e){   
-            e.preventDefault(); 
-            let heartSelect = e.target.parentElement.textContent
-            let likeNumberConvert = Number(heartSelect)
-            
-            likeCker = !likeCker
-            likeCker ? likeNumberConvert = likeNumberConvert+1 : likeNumberConvert = likeNumberConvert-0
-            likeString = likeNumberConvert.toString()
-            console.log(heartSelect);
-            heartSelect = likeString
-            console.log(likeString);
-            
-            
-            
-            
-        
-                      
-          
-         
-          
-          
-          
+            e.preventDefault();
+              likePhoto(e);
           })
-        }
-  });
-};  
+}
 
-fetchMedia(); 
+
+function likePhoto (el){
+  let heartSelect = el.target.parentElement.getElementsByClassName('mediaLike')[0];
+  console.log(heartSelect);
+  let likeNumberConvert = parseInt(heartSelect.textContent);
+  
+  
+  if (heartSelect.classList.contains('liked')) {  
+     console.log('toto');
+    likeNumberConvert--
+    heartSelect.textContent = likeNumberConvert
+    heartSelect.classList.remove("liked");      
+  } else {           
+     likeNumberConvert++
+     console.log('tata', likeNumberConvert); 
+     heartSelect.textContent = likeNumberConvert
+     heartSelect.classList.add("liked");     
+  }   
+}
 /*******************************LIGHT-BOX**********************************************/
 
   
@@ -213,8 +218,6 @@ prev.addEventListener('click', function (e){
     console.log('prev'); 
 }) 
   
-          
-
 close.addEventListener('click', function (e){
   e.preventDefault();
   modal.classList.add('hidden')        

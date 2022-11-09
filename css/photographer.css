@@ -7,6 +7,7 @@ body{
     font-family: "DM Sans", sans-serif;
     margin-right: 50px;
     margin-left: 50px;
+    
 }
 /********************************HEADER*****************************************/
 header .logo {
@@ -230,14 +231,11 @@ main #media-section{
 }
 
 body #smallBoxContent{
+    
+    
+    position: absolute;
+    right: 50px;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-
-}
-
-body #smallBoxContent{
     height: 89px;
     width: 376px;
     background: #DB8876;
@@ -246,7 +244,9 @@ body #smallBoxContent{
     flex-direction: row;
     justify-content: flex-end;
     align-content: flex-end;
-    align-self: flex-end; 
+    align-self: flex-end;
+    
+    
     
 }
 
@@ -259,7 +259,21 @@ body #smallBoxContent .boxPrice{
     display: flex;
     align-content: center;
     align-items: center;
+    
 }
+
+body #smallBoxContent .smallLogo{
+    width: 17.5px;
+    height: 18.35px;
+    color:#000000 ;
+}
+
+body #smallBoxContent .likeAdd{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+}
+
 
 /*************************************LIGHT-BOX**********************************/
 
