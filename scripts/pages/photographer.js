@@ -66,20 +66,14 @@ async function fetchMedia() {
     displayMedia(photographerMedia)
   });
   
-
-  
 /**********************************LIGHT-BOX******************************************************/         
         const gallerys = document.getElementsByClassName('mediaContent')
         let lightBoxTitle = document.getElementsByClassName('lightBoxImgTitle')[0]
-       
-        
-      
         
         for(const gallery of gallerys){ 
           gallery.addEventListener('click', function (e){
             e.preventDefault();
             let lbxTitle = document.getElementsByClassName('mediaTitle')[0].textContent
-          
             lightBoxTitle.textContent = lbxTitle
             const setImg = gallery.getAttribute('src')     
             modal.classList.remove('hidden')
@@ -91,8 +85,6 @@ async function fetchMedia() {
         smallBoxContent()   
 };
 
-
-
 fetchMedia(); 
 
 function displayMedia(photographerMedia){
@@ -102,55 +94,54 @@ function displayMedia(photographerMedia){
     const likeSvg = `assets/images/butons/likesvg.svg`;
     const title = photographerMedia.title;
     let like = photographerMedia.likes;
-    let likeAmount = Number(like)
-    const mediaSection = document.getElementById('media-section')  
-    const mediaElements = document.createElement('div')
-    mediaElements.classList.add('mediaElements')
+    let likeAmount = Number(like);
+    const mediaSection = document.getElementById('media-section');  
+    const mediaElements = document.createElement('div');
+    mediaElements.classList.add('mediaElements');
      
     if (photographerMedia = photographerMedia.image){
-        const mediaContent = document.createElement('img')
-        mediaContent.classList.add('mediaContent')
+        const mediaContent = document.createElement('img');
+        mediaContent.classList.add('mediaContent');
         mediaContent.setAttribute("src", pictures);
-        mediaElements.appendChild(mediaContent) 
+        mediaElements.appendChild(mediaContent); 
     } else {
-        const mediaContent = document.createElement('video')
-        mediaContent.classList.add('videoContent')
+        const mediaContent = document.createElement('video');
+        mediaContent.classList.add('videoContent');
         mediaContent.setAttribute("src", video);
-        mediaElements.appendChild(mediaContent) 
+        mediaElements.appendChild(mediaContent); 
       }
-        const mediaDetails = document.createElement('div')
-        mediaDetails.classList.add('mediaDetails')
+        const mediaDetails = document.createElement('div');
+        mediaDetails.classList.add('mediaDetails');
 
-        const mediaTitle = document.createElement('h2')
-        mediaTitle.classList.add('mediaTitle')
-        mediaTitle.setAttribute('id', 'mediaT')
+        const mediaTitle = document.createElement('h2');
+        mediaTitle.classList.add('mediaTitle');
+        mediaTitle.setAttribute('id', 'mediaT');
         mediaTitle.textContent = title;
       
-        const likeElements = document.createElement('div')
-        likeElements.classList.add('likeElements')
-        const mediaLike = document.createElement('div')
-        mediaLike.classList.add('mediaLike')
-        mediaLike.setAttribute('id', 'mLike')
+        const likeElements = document.createElement('div');
+        likeElements.classList.add('likeElements');
+        const mediaLike = document.createElement('div');
+        mediaLike.classList.add('mediaLike');
+        mediaLike.setAttribute('id', 'mLike');
         mediaLike.textContent = likeAmount
 
-        const likeLogo = document.createElement('img')
-        likeLogo.classList.add('likeLogo')
-        likeLogo.setAttribute("src", likeSvg)
+        const likeLogo = document.createElement('img');
+        likeLogo.classList.add('likeLogo');
+        likeLogo.setAttribute("src", likeSvg);
 
-        mediaSection.appendChild(mediaElements)     
-        mediaElements.appendChild(mediaDetails)
-        mediaDetails.appendChild(mediaTitle)
-        mediaDetails.appendChild(likeElements)
-        likeElements.appendChild(mediaLike)
-        likeElements.appendChild(likeLogo)
+        mediaSection.appendChild(mediaElements);     
+        mediaElements.appendChild(mediaDetails);
+        mediaDetails.appendChild(mediaTitle);
+        mediaDetails.appendChild(likeElements);
+        likeElements.appendChild(mediaLike);
+        likeElements.appendChild(likeLogo);
        
         const likeHeart = likeElements.getElementsByClassName('likeLogo')[0];
           likeHeart.addEventListener('click', function (e){   
             e.preventDefault();
-              likePhoto(e);
+            likePhoto(e);
           })
 }
-
 
 function likePhoto (el){
   let heartSelect = el.target.parentElement.getElementsByClassName('mediaLike')[0];
@@ -162,41 +153,34 @@ function likePhoto (el){
     likeNumberConvert--
     heartSelect.textContent = likeNumberConvert
     likeSest-- 
-    likeSests.textContent = likeSest 
+    likeSests.textContent = likeSest
     heartSelect.classList.remove("liked");
             
   } else {           
      likeNumberConvert++
      heartSelect.textContent = likeNumberConvert
      likeSest++
-     likeSests.textContent = likeSest 
-     heartSelect.classList.add("liked");
-       
+     likeSests.textContent = likeSest; 
+     heartSelect.classList.add("liked");      
   }   
 }
 /*******************************LIGHT-BOX**********************************************/
 
-const modal = document.getElementById('lightBox')       
-const lightBoxImg = document.getElementById('modalImg')
-   
-    
-const prev = document.getElementsByClassName('rightButon')[0]
-const close = document.getElementsByClassName('closeButon')[0]
-const likeCounts = document.getElementsByClassName('mediaLike')
+const modal = document.getElementById('lightBox');       
+const lightBoxImg = document.getElementById('modalImg');
+       
+const prev = document.getElementsByClassName('rightButon')[0];
+const close = document.getElementsByClassName('closeButon')[0];
+const likeCounts = document.getElementsByClassName('mediaLike');
 
-
-
-let getLightBoxImg = document.getElementById('modalImg')
-const next = document.getElementsByClassName('leftButon')[0]
+let getLightBoxImg = document.getElementById('modalImg');
+const next = document.getElementsByClassName('leftButon')[0];
 const gallerys = [document.getElementsByClassName('mediaContent')]; 
-
 
 next.addEventListener('click', function (e){
   e.preventDefault();
-  const imgArrayIndex = gallerys.indexOf();
-  console.log(getLightBoxImg);
-  console.table(gallerys);
-  console.log(imgArrayIndex);         
+  console.log(gallerys);
+  console.log(lightBoxImg);   
 })
 
 prev.addEventListener('click', function (e){
@@ -206,27 +190,9 @@ prev.addEventListener('click', function (e){
   
 close.addEventListener('click', function (e){
   e.preventDefault();
-  modal.classList.add('hidden')        
+  modal.classList.add('hidden');
+  smBox.classList.remove('hidden');        
 })  
-
-
-
-
-
-
-// function nextSlide(e) {
-//   e.preventDefault;
-//   if (displayMediaList.indexOf(currentMedia) + 1 >= displayMediaList.length) {
-//     currentMedia = displayMediaList[0];
-//   } else {
-//     currentMedia =
-//       displayMediaList[displayMediaList.indexOf(currentMedia) + 1];
-//   }
-//   displayContent();
-// }
-
-
-
 
 function smallBoxContent(){
 
@@ -234,24 +200,24 @@ let sumLikes = likeArray.reduce((a, b) => {
   return a + b;
 });
 
-const smallBoxContent = document.getElementById('smallBoxContent')
-
-const likesElements = document.createElement('div')
-    likesElements.classList.add('likesElements')
-let likeAdd = document.createElement('div')
-    likeAdd.classList.add('likeAdd')
+const smallBoxContent = document.getElementById('smallBoxContent');
+const likesElements = document.createElement('div');
+    likesElements.classList.add('likesElements');
+let likeAdd = document.createElement('div');
+    likeAdd.classList.add('likeAdd');
     likeAdd.textContent = sumLikes;
 const likeSvg = `assets/images/butons/likesvg.svg`;
-const smallLogo = document.createElement('img')
-    smallLogo.classList.add('smallLogo')
-    smallLogo.setAttribute("src", likeSvg)
-const smallPhotographerPrice = document.createElement('div')
-    smallPhotographerPrice.classList.add('boxPrice')
-    smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour" 
-    smallBoxContent.appendChild(likesElements)
-    likesElements.appendChild(likeAdd)
-    likesElements.appendChild(smallLogo)
-    smallBoxContent.appendChild(smallPhotographerPrice)
+const smallLogo = document.createElement('img');
+    smallLogo.classList.add('smallLogo');
+    smallLogo.setAttribute("src", likeSvg);
+const smallPhotographerPrice = document.createElement('div');
+    smallPhotographerPrice.classList.add('boxPrice');
+    smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour"; 
+    
+    smallBoxContent.appendChild(likesElements);
+    likesElements.appendChild(likeAdd);
+    likesElements.appendChild(smallLogo);
+    smallBoxContent.appendChild(smallPhotographerPrice);
 
   }
 
