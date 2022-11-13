@@ -230,25 +230,29 @@ main #media-section{
     width: 17.5px; 
 }
 
-body #smallBoxContent{
-    
-    
-    position: absolute;
-    right: 50px;
+body #smallBoxContent{ 
+    position: fixed;
     width: 100%;
-    height: 89px;
+    height: 60px;
     width: 376px;
     background: #DB8876;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    align-content: flex-end;
-    align-self: flex-end;
-    
-    
+    justify-content: space-between;
+    align-items: center;
+    bottom: -40px;
+    right: 15px;
+    padding: 25px 25px 40px 25px;   
     
 }
+
+body #smallBoxContent .likesElements{ 
+     display: flex;
+     align-items: center;
+     gap: 10px;
+}
+
 
 body #smallBoxContent .boxPrice{
     font-style: normal;
@@ -272,7 +276,10 @@ body #smallBoxContent .likeAdd{
     font-weight: 500;
     font-size: 24px;
     line-height: 31px;
+    
 }
+
+
 
 
 /*************************************LIGHT-BOX**********************************/
@@ -306,6 +313,13 @@ body #smallBoxContent .likeAdd{
     height: 90%;
     border-radius: 5px;
     object-fit:contain;    
+}
+
+#lightBox .lightBoxImgTitle{
+    font-weight: 400;
+    font-size: 24px; 
+    color: #911C1C;
+
 }
 
 #lightBox .leftButon{

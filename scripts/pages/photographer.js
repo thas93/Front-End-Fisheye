@@ -1,5 +1,5 @@
 
-/***EXTRACT ID FROM URL**************************************************************/
+/***********************************************************************************EXTRACT ID FROM URL**************************************************************/
 const takeId = window.location.search;
     // console.log(takeId);
 const extractId = new URLSearchParams(takeId);
@@ -7,10 +7,9 @@ const extractId = new URLSearchParams(takeId);
 const photographerId = extractId.get("id");
     // console.log(photographerId);
  
+/******************************************************************************************************************************************************************/
 
-/***************************************************************************************/
-
-/***DISPLAY PHOTOGRAPHER INFO********************************************************/
+/********************************************************************************DISPLAY PHOTOGRAPHER INFO********************************************************/
 
 let infoPhotographer = "";
 let photographerArray = [];
@@ -26,35 +25,29 @@ async function fetchData() {
     }
   });
   
-  
   const pName = document.getElementById('pName');
   pName.textContent = infoPhotographer.name;
 
   const pLocation = document.getElementById('pLocation');
-  pLocation .textContent = infoPhotographer.city + "," + " " + infoPhotographer.country;
+  pLocation.textContent = infoPhotographer.city + "," + " " + infoPhotographer.country;
       
   const pTag = document.getElementById('pTag');
-  pTag .textContent = infoPhotographer.tagline;
+  pTag.textContent = infoPhotographer.tagline;
       
   const picture = `assets/photographers/${infoPhotographer.portrait}`;
 
   const pImg = document.getElementById('pImg');
   pImg.setAttribute("src", picture);
 
-  
-
 };
 
 fetchData();
 
-/**************************************************************************************** */
-
-/***DISPLAY PHOTOGRAPHER MEDIAS*****************************************************/
+/***********************************************************************************DISPLAY PHOTOGRAPHER MEDIAS*****************************************************/
 let mediaArray = [];
 let infoMedia = [];
 let allInfo = [];
 let likeArray = []; 
-
 
 async function fetchMedia() {
   await fetch("./data/photographers.json")
@@ -73,46 +66,37 @@ async function fetchMedia() {
     displayMedia(photographerMedia)
   });
   
-    let sumLikes = likeArray.reduce((a, b) => {
-      return a + b;
-  });
- 
-  const smallBoxContent = document.getElementById('smallBoxContent')
-  let likeAdd = document.createElement('div')
-        likeAdd.classList.add('likeAdd')
-        likeAdd.textContent = sumLikes;
-  const likeSvg = `assets/images/butons/likesvg.svg`;
-  const smallLogo = document.createElement('img')
-        smallLogo.classList.add('smallLogo')
-        smallLogo.setAttribute("src", likeSvg)
-  const smallPhotographerPrice = document.createElement('div')
-        smallPhotographerPrice.classList.add('boxPrice')
-        smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour" 
-        
-        smallBoxContent.appendChild(likeAdd)
-        smallBoxContent.appendChild(smallLogo)
-        smallBoxContent.appendChild(smallPhotographerPrice)
+
   
 /**********************************LIGHT-BOX******************************************************/         
-        const gallerys = document.getElementsByClassName('mediaContent')      
+        const gallerys = document.getElementsByClassName('mediaContent')
+        let lightBoxTitle = document.getElementsByClassName('lightBoxImgTitle')[0]
+       
+        
+      
+        
         for(const gallery of gallerys){ 
           gallery.addEventListener('click', function (e){
             e.preventDefault();
-            const setImg = gallery.getAttribute('src')      
+            let lbxTitle = document.getElementsByClassName('mediaTitle')[0].textContent
+          
+            lightBoxTitle.textContent = lbxTitle
+            const setImg = gallery.getAttribute('src')     
             modal.classList.remove('hidden')
-            lightBoxImg.setAttribute('src', setImg)           
+            lightBoxImg.setAttribute('src', setImg)
+            smBox = document.getElementById('smallBoxContent')
+            smBox.classList.add('hidden')
           })
         }
-        
-       
-  
-};  
+        smallBoxContent()   
+};
+
+
 
 fetchMedia(); 
 
 function displayMedia(photographerMedia){
   
-    
     const pictures = `assets/medias/${photographerMedia.image}`;   
     const video = `assets/medias/${photographerMedia.video}`;
     const likeSvg = `assets/images/butons/likesvg.svg`;
@@ -170,48 +154,50 @@ function displayMedia(photographerMedia){
 
 function likePhoto (el){
   let heartSelect = el.target.parentElement.getElementsByClassName('mediaLike')[0];
-  console.log(heartSelect);
   let likeNumberConvert = parseInt(heartSelect.textContent);
-  
-  
+  let likeSests = document.getElementsByClassName('likeAdd')[0];
+  let likeSest = parseInt(likeSests.textContent);
+
   if (heartSelect.classList.contains('liked')) {  
-     console.log('toto');
     likeNumberConvert--
     heartSelect.textContent = likeNumberConvert
-    heartSelect.classList.remove("liked");      
+    likeSest-- 
+    likeSests.textContent = likeSest 
+    heartSelect.classList.remove("liked");
+            
   } else {           
      likeNumberConvert++
-     console.log('tata', likeNumberConvert); 
      heartSelect.textContent = likeNumberConvert
-     heartSelect.classList.add("liked");     
+     likeSest++
+     likeSests.textContent = likeSest 
+     heartSelect.classList.add("liked");
+       
   }   
 }
 /*******************************LIGHT-BOX**********************************************/
 
-  
-const mElements = document.getElementsByClassName('mediaElements')
 const modal = document.getElementById('lightBox')       
 const lightBoxImg = document.getElementById('modalImg')
-const lightBoxTitle = document.getElementById('lightBoxImgTitle')     
-const next = document.getElementsByClassName('leftButon')[0]    
+   
+    
 const prev = document.getElementsByClassName('rightButon')[0]
 const close = document.getElementsByClassName('closeButon')[0]
 const likeCounts = document.getElementsByClassName('mediaLike')
 
 
 
-for(const mElement of mElements){           
-  mElement.addEventListener('click', function (e){
-    e.preventDefault();
-    const elementTitle = mElement.querySelector('.mediaTitle').textContent
-    lightBoxTitle.innerHTML = elementTitle            
-  })
-}
+let getLightBoxImg = document.getElementById('modalImg')
+const next = document.getElementsByClassName('leftButon')[0]
+const gallerys = [document.getElementsByClassName('mediaContent')]; 
+
 
 next.addEventListener('click', function (e){
-    e.preventDefault();
-    console.log('next');       
-}) 
+  e.preventDefault();
+  const imgArrayIndex = gallerys.indexOf();
+  console.log(getLightBoxImg);
+  console.table(gallerys);
+  console.log(imgArrayIndex);         
+})
 
 prev.addEventListener('click', function (e){
     e.preventDefault();
@@ -228,13 +214,46 @@ close.addEventListener('click', function (e){
 
 
 
+// function nextSlide(e) {
+//   e.preventDefault;
+//   if (displayMediaList.indexOf(currentMedia) + 1 >= displayMediaList.length) {
+//     currentMedia = displayMediaList[0];
+//   } else {
+//     currentMedia =
+//       displayMediaList[displayMediaList.indexOf(currentMedia) + 1];
+//   }
+//   displayContent();
+// }
 
 
 
 
+function smallBoxContent(){
 
+let sumLikes = likeArray.reduce((a, b) => {
+  return a + b;
+});
 
+const smallBoxContent = document.getElementById('smallBoxContent')
 
+const likesElements = document.createElement('div')
+    likesElements.classList.add('likesElements')
+let likeAdd = document.createElement('div')
+    likeAdd.classList.add('likeAdd')
+    likeAdd.textContent = sumLikes;
+const likeSvg = `assets/images/butons/likesvg.svg`;
+const smallLogo = document.createElement('img')
+    smallLogo.classList.add('smallLogo')
+    smallLogo.setAttribute("src", likeSvg)
+const smallPhotographerPrice = document.createElement('div')
+    smallPhotographerPrice.classList.add('boxPrice')
+    smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour" 
+    smallBoxContent.appendChild(likesElements)
+    likesElements.appendChild(likeAdd)
+    likesElements.appendChild(smallLogo)
+    smallBoxContent.appendChild(smallPhotographerPrice)
+
+  }
 
 
 
