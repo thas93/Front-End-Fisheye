@@ -9,7 +9,7 @@ body{
     margin-left: 50px;
     
 }
-/********************************HEADER*****************************************/
+/*********************************************************************************************HEADER************************************************************/
 header .logo {
     height: 50px;
     margin-top: 30px;
@@ -90,7 +90,7 @@ main img {
 }
 /*******************************************************************************/
 
-/************************************FORM***************************************/
+/**************************************************************************************FORM****************************************************************************/
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -209,7 +209,8 @@ main #media-section{
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer; 
+  cursor: pointer;
+  gap: 5px;px; 
 }
 
 .mediaDetails .mediaLike {
@@ -243,7 +244,7 @@ body #smallBoxContent{
     align-items: center;
     bottom: -40px;
     right: 15px;
-    padding: 25px 25px 40px 25px;   
+    padding: 5px 25px 40px 25px;   
     
 }
 
@@ -252,7 +253,6 @@ body #smallBoxContent .likesElements{
      align-items: center;
      gap: 10px;
 }
-
 
 body #smallBoxContent .boxPrice{
     font-style: normal;
@@ -279,10 +279,7 @@ body #smallBoxContent .likeAdd{
     
 }
 
-
-
-
-/*************************************LIGHT-BOX**********************************/
+/***********************************************************************LIGHT-BOX**********************************************************************************/
 
 #lightBox{
     position: fixed;
@@ -291,7 +288,6 @@ body #smallBoxContent .likeAdd{
     left: 0;
     bottom: 0;
     background-color: #fffefe;
-    
 }
 
 .hidden{
@@ -309,17 +305,29 @@ body #smallBoxContent .likeAdd{
 }
 
 #modalImg{
-    width: 90%;
+    width: 100%;
     height: 90%;
     border-radius: 5px;
-    object-fit:contain;    
+    object-fit:cover;
+    padding: 0px;
+    margin: 0px;
 }
 
 #lightBox .lightBoxImgTitle{
     font-weight: 400;
     font-size: 24px; 
     color: #911C1C;
+}
 
+#lightBox .lightBoxContent .imgTitle{
+     
+  margin: 0px;
+  padding: 0px;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column; 
+  
 }
 
 #lightBox .leftButon{
@@ -331,6 +339,20 @@ body #smallBoxContent .likeAdd{
     width: 48px;
     cursor: pointer;
     transition: .3s; 
+}
+
+#lightBox .leftClose{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-self: flex-start;
+    padding-top: 65px;
+    gap: 320px;
+}
+
+#lightBox .leftClose .closeButon{
+    margin-left: 10px;
+    
 }
 
 #lightBox .rightButon{
@@ -351,8 +373,8 @@ body #smallBoxContent .likeAdd{
     justify-content: flex-end;
     justify-items: flex-end;
     align-items: center;
-    height: 42px;
-    width: 42px;
+    height: 32px;
+    width: 32px;
     opacity: 0.5;
     cursor: pointer;
     transition: .3s;   

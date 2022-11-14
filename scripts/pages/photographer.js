@@ -79,8 +79,8 @@ async function fetchMedia() {
             modal.classList.remove('hidden')
             lightBoxImg.setAttribute('src', setImg)
             smBox = document.getElementById('smallBoxContent')
-            smBox.classList.add('hidden')
-          })
+            smBox.classList.add('hidden')   
+         })     
         }
         smallBoxContent()   
 };
@@ -173,14 +173,20 @@ const prev = document.getElementsByClassName('rightButon')[0];
 const close = document.getElementsByClassName('closeButon')[0];
 const likeCounts = document.getElementsByClassName('mediaLike');
 
-let getLightBoxImg = document.getElementById('modalImg');
+let getLightBoxImg = document.getElementsByClassName('imgLightBox')[0];
 const next = document.getElementsByClassName('leftButon')[0];
-const gallerys = [document.getElementsByClassName('mediaContent')]; 
+const mediaGallerys = [document.getElementsByClassName('mediaContent')]; 
 
 next.addEventListener('click', function (e){
   e.preventDefault();
-  console.log(gallerys);
-  console.log(lightBoxImg);   
+
+  console.log(getLightBoxImg);
+
+for(let mediaGallery of mediaGallerys){ 
+ console.log(mediaGallery);
+    
+}
+
 })
 
 prev.addEventListener('click', function (e){
