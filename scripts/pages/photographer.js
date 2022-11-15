@@ -47,7 +47,8 @@ fetchData();
 let mediaArray = [];
 let infoMedia = [];
 let allInfo = [];
-let likeArray = []; 
+let likeArray = [];
+let currentIndexMedia = ""; 
 
 async function fetchMedia() {
   await fetch("./data/photographers.json")
@@ -58,7 +59,7 @@ async function fetchMedia() {
     mediaArray.filter((photographerMedia) => {
       if (photographerMedia.photographerId == photographerId) { 
         infoMedia.push(photographerMedia);
-        likeArray.push(photographerMedia.likes)  
+        likeArray.push(photographerMedia.likes) 
        }     
   });
 
@@ -67,22 +68,45 @@ async function fetchMedia() {
   });
   
 /**********************************LIGHT-BOX******************************************************/         
-        const gallerys = document.getElementsByClassName('mediaContent')
-        let lightBoxTitle = document.getElementsByClassName('lightBoxImgTitle')[0]
-        
-        for(const gallery of gallerys){ 
-          gallery.addEventListener('click', function (e){
-            e.preventDefault();
-            let lbxTitle = document.getElementsByClassName('mediaTitle')[0].textContent
-            lightBoxTitle.textContent = lbxTitle
-            const setImg = gallery.getAttribute('src')     
-            modal.classList.remove('hidden')
-            lightBoxImg.setAttribute('src', setImg)
-            smBox = document.getElementById('smallBoxContent')
-            smBox.classList.add('hidden')   
-         })     
-        }
-        smallBoxContent()   
+  const gallerys = document.getElementsByClassName('mediaContent')
+ 
+
+  for(const gallery of gallerys){ 
+    gallery.addEventListener('click', function (e){
+      e.preventDefault();
+      openLightBox (e, gallery)
+      getIndex()
+   })     
+  }
+
+
+
+
+
+
+      // function getIndex(){
+      //   for (let i = 0; i < gallerys.length; i++) {
+      //       let gallery = gallerys[i]
+      //       gallery.addEventListener('click', function (e){
+      //         e.preventDefault(); 
+      //         console.log(i);
+      //         currentIndexMedia = i;
+      //       })     
+      //     }  
+      // }
+
+
+    // for (let i = 0; i < gallerys.length; i++) {
+    //   let gallery = gallerys[i]
+    //   gallery.addEventListener('click', function (e){
+    //     e.preventDefault(); 
+    //     // console.log(i);
+    //     openLightBox(e, gallery);
+    //     currentIndexMedia = i;
+    //   })     
+    // }  
+       
+   smallBoxContent()   
 };
 
 fetchMedia(); 
@@ -167,33 +191,36 @@ function likePhoto (el){
 /*******************************LIGHT-BOX**********************************************/
 
 const modal = document.getElementById('lightBox');       
-const lightBoxImg = document.getElementById('modalImg');
-       
+const lightBoxImg = document.getElementById('modalImg');     
+const next = document.getElementsByClassName('leftButon')[0];
 const prev = document.getElementsByClassName('rightButon')[0];
 const close = document.getElementsByClassName('closeButon')[0];
 const likeCounts = document.getElementsByClassName('mediaLike');
-
 let getLightBoxImg = document.getElementsByClassName('imgLightBox')[0];
-const next = document.getElementsByClassName('leftButon')[0];
 const mediaGallerys = [document.getElementsByClassName('mediaContent')];
 const mGallerys = []
-// console.log(mediaGallerys);
-mediaGallerys.forEach((mediaGallery) => {
-  console.log(mediaGallery);
-});
+
+
 
 
 next.addEventListener('click', function (e){
   e.preventDefault();
-
+  console.log('currentIndexMedia',currentIndexMedia);
+  let nextIndex = currentIndexMedia+1;
+ 
+  console.log('infomedia',gallerys[nextIndex]);
   
+  // currentIndexMedia = nextIndex
 
-
-
-
+  for (let i = 0; i < gallerys.length; i++) {
+    let gallery = gallerys[i]
+    gallery.addEventListener('click', function (e){
+      e.preventDefault(); 
+      console.log(i);
+      currentIndexMedia = i;
+    })     
+  }
 })
-
-
 
 prev.addEventListener('click', function (e){
     e.preventDefault();
@@ -202,8 +229,7 @@ prev.addEventListener('click', function (e){
   
 close.addEventListener('click', function (e){
   e.preventDefault();
-  modal.classList.add('hidden');
-  smBox.classList.remove('hidden');        
+  modal.classList.add('hidden');      
 })  
 
 function smallBoxContent(){
@@ -233,5 +259,14 @@ const smallPhotographerPrice = document.createElement('div');
 
   }
 
+function openLightBox (e, gallery) {
+  let lightBoxTitle = document.getElementsByClassName('lightBoxImgTitle')[0]
+  let getTittle = e.target.parentElement.getElementsByClassName('mediaTitle')[0].textContent
+  lightBoxTitle.textContent = getTittle;
+  const setImg = gallery.getAttribute('src')     
+  modal.classList.remove('hidden')
+  lightBoxImg.setAttribute('src', setImg)     
+  
 
+}
 
