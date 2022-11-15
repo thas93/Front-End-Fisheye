@@ -175,19 +175,25 @@ const likeCounts = document.getElementsByClassName('mediaLike');
 
 let getLightBoxImg = document.getElementsByClassName('imgLightBox')[0];
 const next = document.getElementsByClassName('leftButon')[0];
-const mediaGallerys = [document.getElementsByClassName('mediaContent')]; 
+const mediaGallerys = [document.getElementsByClassName('mediaContent')];
+const mGallerys = []
+// console.log(mediaGallerys);
+mediaGallerys.forEach((mediaGallery) => {
+  console.log(mediaGallery);
+});
+
 
 next.addEventListener('click', function (e){
   e.preventDefault();
 
-  console.log(getLightBoxImg);
+  
 
-for(let mediaGallery of mediaGallerys){ 
- console.log(mediaGallery);
-    
-}
+
+
 
 })
+
+
 
 prev.addEventListener('click', function (e){
     e.preventDefault();
