@@ -67,34 +67,36 @@ async function fetchMedia() {
     displayMedia(photographerMedia)
   });
   
+  console.log(infoMedia);
 /**********************************LIGHT-BOX******************************************************/         
   const gallerys = document.getElementsByClassName('mediaContent')
+ console.log(gallerys);
+
+  // for(const gallery of gallerys){ 
+  //   gallery.addEventListener('click', function (e){
+  //     e.preventDefault();
+  //     openLightBox (e, gallery, gallerys)
+  //     // getIndex()
+  //  })     
+  // }
+
+
+
+      function getIndex(){
+        const gallerys = document.getElementsByClassName('mediaContent')
  
-
-  for(const gallery of gallerys){ 
-    gallery.addEventListener('click', function (e){
-      e.preventDefault();
-      openLightBox (e, gallery)
-      getIndex()
-   })     
-  }
-
-
-
-
-
-
-      // function getIndex(){
-      //   for (let i = 0; i < gallerys.length; i++) {
-      //       let gallery = gallerys[i]
-      //       gallery.addEventListener('click', function (e){
-      //         e.preventDefault(); 
-      //         console.log(i);
-      //         currentIndexMedia = i;
-      //       })     
-      //     }  
-      // }
-
+        for (let i = 0; i < gallerys.length; i++) {
+            let gallery = gallerys[i]
+            gallery.addEventListener('click', function (e){
+              e.preventDefault(); 
+              openLightBox (e, gallery, gallerys)
+              
+              console.log(i);
+              currentIndexMedia = i;
+            })     
+          }  
+      }
+      getIndex();
 
     // for (let i = 0; i < gallerys.length; i++) {
     //   let gallery = gallerys[i]
@@ -130,7 +132,7 @@ function displayMedia(photographerMedia){
         mediaElements.appendChild(mediaContent); 
     } else {
         const mediaContent = document.createElement('video');
-        mediaContent.classList.add('videoContent');
+        mediaContent.classList.add('mediaContent');
         mediaContent.setAttribute("src", video);
         mediaElements.appendChild(mediaContent); 
       }
@@ -208,18 +210,23 @@ next.addEventListener('click', function (e){
   console.log('currentIndexMedia',currentIndexMedia);
   let nextIndex = currentIndexMedia+1;
  
-  console.log('infomedia',gallerys[nextIndex]);
+  console.log('infomedia',infoMedia[nextIndex]);
   
-  // currentIndexMedia = nextIndex
 
-  for (let i = 0; i < gallerys.length; i++) {
-    let gallery = gallerys[i]
-    gallery.addEventListener('click', function (e){
-      e.preventDefault(); 
-      console.log(i);
-      currentIndexMedia = i;
-    })     
-  }
+  // // // currentIndexMedia = nextIndex
+
+  // // for (let i = 0; i < gallerys.length; i++) {
+  // //   let gallery = gallerys[i]
+  // //   gallery.addEventListener('click', function (e){
+  // //     e.preventDefault(); 
+  // //     console.log(i);
+  // //     currentIndexMedia = i;
+  // //   })     
+  // // }
+  currentIndexMedia = currentIndexMedia+1
+  console.log(currentIndexMedia);
+
+  
 })
 
 prev.addEventListener('click', function (e){
@@ -240,22 +247,22 @@ let sumLikes = likeArray.reduce((a, b) => {
 
 const smallBoxContent = document.getElementById('smallBoxContent');
 const likesElements = document.createElement('div');
-    likesElements.classList.add('likesElements');
+      likesElements.classList.add('likesElements');
 let likeAdd = document.createElement('div');
-    likeAdd.classList.add('likeAdd');
-    likeAdd.textContent = sumLikes;
+      likeAdd.classList.add('likeAdd');
+      likeAdd.textContent = sumLikes;
 const likeSvg = `assets/images/butons/likesvg.svg`;
 const smallLogo = document.createElement('img');
-    smallLogo.classList.add('smallLogo');
-    smallLogo.setAttribute("src", likeSvg);
+      smallLogo.classList.add('smallLogo');
+      smallLogo.setAttribute("src", likeSvg);
 const smallPhotographerPrice = document.createElement('div');
-    smallPhotographerPrice.classList.add('boxPrice');
-    smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour"; 
+      smallPhotographerPrice.classList.add('boxPrice');
+      smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour"; 
     
-    smallBoxContent.appendChild(likesElements);
-    likesElements.appendChild(likeAdd);
-    likesElements.appendChild(smallLogo);
-    smallBoxContent.appendChild(smallPhotographerPrice);
+      smallBoxContent.appendChild(likesElements);
+      likesElements.appendChild(likeAdd);
+      likesElements.appendChild(smallLogo);
+      smallBoxContent.appendChild(smallPhotographerPrice);
 
   }
 
@@ -265,8 +272,7 @@ function openLightBox (e, gallery) {
   lightBoxTitle.textContent = getTittle;
   const setImg = gallery.getAttribute('src')     
   modal.classList.remove('hidden')
-  lightBoxImg.setAttribute('src', setImg)     
+  lightBoxImg.setAttribute('src', setImg)
   
-
 }
 
