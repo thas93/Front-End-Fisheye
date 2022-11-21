@@ -218,7 +218,7 @@ const likesElements = document.createElement('div');
 let likeAdd = document.createElement('div');
       likeAdd.classList.add('likeAdd');
       likeAdd.textContent = sumLikes;
-const likeSvg = `assets/images/butons/likesvg.svg`;
+const likeSvg = `assets/images/butons/like-black.svg`;
 const smallLogo = document.createElement('img');
       smallLogo.classList.add('smallLogo');
       smallLogo.setAttribute("src", likeSvg);
@@ -234,13 +234,11 @@ const smallPhotographerPrice = document.createElement('div');
   }
 
 function openLightBox (e, gallery) {
-  
   let getTittle = e.target.parentElement.getElementsByClassName('mediaTitle')[0].textContent
   lightBoxTitle.textContent = getTittle;
   const setImg = gallery.getAttribute('src')     
   modal.classList.remove('hidden')
   lightBoxImg.setAttribute('src', setImg)
-  
 }
 
 function nextImage (){
@@ -258,4 +256,6 @@ function prevImage (){
   lightBoxImg.setAttribute('src', setNextImg)
   lightBoxTitle.textContent = infoMedia[prevIndex].title 
 }
+
+
 

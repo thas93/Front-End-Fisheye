@@ -22,19 +22,20 @@
           <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
           <img src="" alt="" id="pImg">
       </div>
-
       <div class="filterSection">
-        <h3 class="">Trier par</h3>
-        <div class="fliterBox">
-          <div class="case">
-            <h3 class="fPopularity">Popularité</h3>
-            <img src="./assets/images/butons/chevron.svg" alt="">
+        <div class="filterBy">Trier par</div>
+        <div class="btnSection">
+          <button class="btn">
+            <div class="popularity">Popularité</div>
+            <img src="/assets/images/butons/chevron.svg" alt="">
+          </button>
+          <div class="menu-items">
+            <div class="date-item">Date</div>
+            <div class="title-item">Titre</div>
           </div>
-          <h3 class="fDate">Date</h3>
-          <h3 class="fTitle">Titre</h3>
         </div>
       </div>
-        <div id="media-section"></div>   
+      <div id="media-section"></div>   
 </main>
 
 <!-- ************************************LIGHT-BOX**************************** -->
@@ -43,6 +44,7 @@
     <img class="rightButon" src="/assets/images/butons/right-buton.svg" alt="">
     <div class="imgTitle">
       <img id="modalImg" class="imgLightBox" alt="">
+      <video id="modalImg" class="imgLightBox" alt=""></video>
       <h3 class="lightBoxImgTitle"> </h3>
     </div>
     <div class="leftClose">
