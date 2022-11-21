@@ -61,53 +61,31 @@ async function fetchMedia() {
         infoMedia.push(photographerMedia);
         likeArray.push(photographerMedia.likes) 
        }     
-  });
+    });
 
   infoMedia.forEach((photographerMedia) => {
     displayMedia(photographerMedia)
   });
   
-  console.log(infoMedia);
+
 /**********************************LIGHT-BOX******************************************************/         
-  const gallerys = document.getElementsByClassName('mediaContent')
- console.log(gallerys);
-
-  // for(const gallery of gallerys){ 
-  //   gallery.addEventListener('click', function (e){
-  //     e.preventDefault();
-  //     openLightBox (e, gallery, gallerys)
-  //     // getIndex()
-  //  })     
-  // }
-
-
-
-      function getIndex(){
-        const gallerys = document.getElementsByClassName('mediaContent')
  
-        for (let i = 0; i < gallerys.length; i++) {
-            let gallery = gallerys[i]
-            gallery.addEventListener('click', function (e){
-              e.preventDefault(); 
-              openLightBox (e, gallery, gallerys)
-              
-              console.log(i);
-              currentIndexMedia = i;
-            })     
-          }  
-      }
-      getIndex();
 
-    // for (let i = 0; i < gallerys.length; i++) {
-    //   let gallery = gallerys[i]
-    //   gallery.addEventListener('click', function (e){
-    //     e.preventDefault(); 
-    //     // console.log(i);
-    //     openLightBox(e, gallery);
-    //     currentIndexMedia = i;
-    //   })     
-    // }  
-       
+
+   function getIndex(){
+    const gallerys = document.getElementsByClassName('mediaContent')
+ 
+     for (let i = 0; i < gallerys.length; i++) {
+        let gallery = gallerys[i]
+          gallery.addEventListener('click', function (e){
+            e.preventDefault(); 
+            openLightBox (e, gallery, gallerys)
+              currentIndexMedia = i;
+          })     
+      }  
+    }
+      getIndex();
+      
    smallBoxContent()   
 };
 
@@ -121,7 +99,9 @@ function displayMedia(photographerMedia){
     const title = photographerMedia.title;
     let like = photographerMedia.likes;
     let likeAmount = Number(like);
+    
     const mediaSection = document.getElementById('media-section');  
+    
     const mediaElements = document.createElement('div');
     mediaElements.classList.add('mediaElements');
      
@@ -161,15 +141,50 @@ function displayMedia(photographerMedia){
         mediaDetails.appendChild(likeElements);
         likeElements.appendChild(mediaLike);
         likeElements.appendChild(likeLogo);
-       
+        
         const likeHeart = likeElements.getElementsByClassName('likeLogo')[0];
           likeHeart.addEventListener('click', function (e){   
             e.preventDefault();
             likePhoto(e);
           })
+        
 }
 
+
+
+
+/*******************************LIGHT-BOX**********************************************/
+let lightBoxTitle = document.getElementsByClassName('lightBoxImgTitle')[0]
+const modal = document.getElementById('lightBox');       
+let lightBoxImg = document.getElementById('modalImg');     
+const next = document.getElementsByClassName('leftButon')[0];
+const prev = document.getElementsByClassName('rightButon')[0];
+const close = document.getElementsByClassName('closeButon')[0];
+const likeCounts = document.getElementsByClassName('mediaLike');
+let getLightBoxImg = document.getElementsByClassName('imgLightBox')[0];
+const mediaGallerys = [document.getElementsByClassName('mediaContent')];
+const mGallerys = []
+
+
+
+
+next.addEventListener('click', function (e, gallery, image){
+  e.preventDefault();
+  nextImage(); 
+})
+
+prev.addEventListener('click', function (e){
+    e.preventDefault();
+    prevImage();
+}) 
+  
+close.addEventListener('click', function (e){
+  e.preventDefault();
+  modal.classList.add('hidden');      
+})  
+
 function likePhoto (el){
+  
   let heartSelect = el.target.parentElement.getElementsByClassName('mediaLike')[0];
   let likeNumberConvert = parseInt(heartSelect.textContent);
   let likeSests = document.getElementsByClassName('likeAdd')[0];
@@ -190,54 +205,6 @@ function likePhoto (el){
      heartSelect.classList.add("liked");      
   }   
 }
-/*******************************LIGHT-BOX**********************************************/
-
-const modal = document.getElementById('lightBox');       
-const lightBoxImg = document.getElementById('modalImg');     
-const next = document.getElementsByClassName('leftButon')[0];
-const prev = document.getElementsByClassName('rightButon')[0];
-const close = document.getElementsByClassName('closeButon')[0];
-const likeCounts = document.getElementsByClassName('mediaLike');
-let getLightBoxImg = document.getElementsByClassName('imgLightBox')[0];
-const mediaGallerys = [document.getElementsByClassName('mediaContent')];
-const mGallerys = []
-
-
-
-
-next.addEventListener('click', function (e){
-  e.preventDefault();
-  console.log('currentIndexMedia',currentIndexMedia);
-  let nextIndex = currentIndexMedia+1;
- 
-  console.log('infomedia',infoMedia[nextIndex]);
-  
-
-  // // // currentIndexMedia = nextIndex
-
-  // // for (let i = 0; i < gallerys.length; i++) {
-  // //   let gallery = gallerys[i]
-  // //   gallery.addEventListener('click', function (e){
-  // //     e.preventDefault(); 
-  // //     console.log(i);
-  // //     currentIndexMedia = i;
-  // //   })     
-  // // }
-  currentIndexMedia = currentIndexMedia+1
-  console.log(currentIndexMedia);
-
-  
-})
-
-prev.addEventListener('click', function (e){
-    e.preventDefault();
-    console.log('prev'); 
-}) 
-  
-close.addEventListener('click', function (e){
-  e.preventDefault();
-  modal.classList.add('hidden');      
-})  
 
 function smallBoxContent(){
 
@@ -267,12 +234,28 @@ const smallPhotographerPrice = document.createElement('div');
   }
 
 function openLightBox (e, gallery) {
-  let lightBoxTitle = document.getElementsByClassName('lightBoxImgTitle')[0]
+  
   let getTittle = e.target.parentElement.getElementsByClassName('mediaTitle')[0].textContent
   lightBoxTitle.textContent = getTittle;
   const setImg = gallery.getAttribute('src')     
   modal.classList.remove('hidden')
   lightBoxImg.setAttribute('src', setImg)
   
+}
+
+function nextImage (){
+  let nextIndex = currentIndexMedia+1;
+  currentIndexMedia = currentIndexMedia+1
+  setNextImg = `assets/medias/${infoMedia[nextIndex].image}`;
+  lightBoxImg.setAttribute('src', setNextImg)
+  lightBoxTitle.textContent = infoMedia[nextIndex].title
+}
+
+function prevImage (){
+  let prevIndex = currentIndexMedia-1;
+  currentIndexMedia = currentIndexMedia-1
+  setNextImg = `assets/medias/${infoMedia[prevIndex].image}`;
+  lightBoxImg.setAttribute('src', setNextImg)
+  lightBoxTitle.textContent = infoMedia[prevIndex].title 
 }
 
