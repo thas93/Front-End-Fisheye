@@ -364,7 +364,8 @@ body #smallBoxContent .likeAdd{
 }
 
 .hidden{
-    visibility: hidden;
+    display: none;
+    
 }
 
 #lightBox .lightBoxContent{

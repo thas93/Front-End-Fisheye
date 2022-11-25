@@ -63,14 +63,12 @@ async function fetchMedia() {
        }     
     });
 
-  infoMedia.forEach((photographerMedia) => {
+    infoMedia.forEach((photographerMedia) => {
     displayMedia(photographerMedia)
   });
   
 
-/**********************************LIGHT-BOX******************************************************/         
- 
-
+/****************************************************************************************LIGHT-BOX*********************************************************************/         
 
    function getIndex(){
     const gallerys = document.getElementsByClassName('mediaContent')
@@ -84,9 +82,8 @@ async function fetchMedia() {
           })     
       }  
     }
-      getIndex();
-      
-   smallBoxContent()   
+  getIndex();
+  smallBoxContent()   
 };
 
 fetchMedia(); 
@@ -99,7 +96,6 @@ function displayMedia(photographerMedia){
     const title = photographerMedia.title;
     let like = photographerMedia.likes;
     let likeAmount = Number(like);
-    
     const mediaSection = document.getElementById('media-section');  
     
     const mediaElements = document.createElement('div');
@@ -108,11 +104,13 @@ function displayMedia(photographerMedia){
     if (photographerMedia = photographerMedia.image){
         const mediaContent = document.createElement('img');
         mediaContent.classList.add('mediaContent');
+        mediaContent.setAttribute('data-type', 'image');
         mediaContent.setAttribute("src", pictures);
         mediaElements.appendChild(mediaContent); 
     } else {
         const mediaContent = document.createElement('video');
         mediaContent.classList.add('mediaContent');
+        mediaContent.setAttribute('data-type', 'video');
         mediaContent.setAttribute("src", video);
         mediaElements.appendChild(mediaContent); 
       }
@@ -150,32 +148,47 @@ function displayMedia(photographerMedia){
         
 }
 
-
-
-
-/*******************************LIGHT-BOX**********************************************/
+/******************************************************************************************LIGHT-BOX***********************************************************************/
 let lightBoxTitle = document.getElementsByClassName('lightBoxImgTitle')[0]
 const modal = document.getElementById('lightBox');       
-let lightBoxImg = document.getElementById('modalImg');     
+let lightBoxImg = document.getElementById('modalImg');   
+let lightBoxVideo = document.getElementById('modalVideo');
 const next = document.getElementsByClassName('leftButon')[0];
 const prev = document.getElementsByClassName('rightButon')[0];
 const close = document.getElementsByClassName('closeButon')[0];
 const likeCounts = document.getElementsByClassName('mediaLike');
 let getLightBoxImg = document.getElementsByClassName('imgLightBox')[0];
-const mediaGallerys = [document.getElementsByClassName('mediaContent')];
-const mGallerys = []
+// const mediaGallerys = [document.getElementsByClassName('mediaContent')];
 
+function openLightBox (e, gallery) {
+  modal.classList.remove('hidden');
+  let getTittle = e.target.parentElement.getElementsByClassName('mediaTitle')[0].textContent;
+  lightBoxTitle.textContent = getTittle;
+  const setMedia = gallery.getAttribute('src');     
+  let dataType = gallery.getAttribute('data-type');
 
-
+  if(dataType ==='video'){
+    lightBoxVideo.setAttribute('src', setMedia);
+    lightBoxImg.classList.add('hidden');
+    lightBoxVideo.classList.remove('hidden');
+  } 
+  else{
+    lightBoxImg.setAttribute('src', setMedia);
+    lightBoxVideo.classList.add('hidden');
+    lightBoxImg.classList.remove('hidden');
+  }
+}
 
 next.addEventListener('click', function (e, gallery, image){
   e.preventDefault();
-  nextImage(); 
+  const direction = 1;
+  moveImg(direction);  
 })
 
 prev.addEventListener('click', function (e){
-    e.preventDefault();
-    prevImage();
+  e.preventDefault();
+  const direction = (-1);
+  moveImg(direction);
 }) 
   
 close.addEventListener('click', function (e){
@@ -208,54 +221,65 @@ function likePhoto (el){
 
 function smallBoxContent(){
 
-let sumLikes = likeArray.reduce((a, b) => {
-  return a + b;
-});
+  let sumLikes = likeArray.reduce((a, b) => {
+    return a + b;
+  });
 
-const smallBoxContent = document.getElementById('smallBoxContent');
-const likesElements = document.createElement('div');
-      likesElements.classList.add('likesElements');
-let likeAdd = document.createElement('div');
-      likeAdd.classList.add('likeAdd');
-      likeAdd.textContent = sumLikes;
-const likeSvg = `assets/images/butons/like-black.svg`;
-const smallLogo = document.createElement('img');
-      smallLogo.classList.add('smallLogo');
-      smallLogo.setAttribute("src", likeSvg);
-const smallPhotographerPrice = document.createElement('div');
-      smallPhotographerPrice.classList.add('boxPrice');
-      smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour"; 
-    
-      smallBoxContent.appendChild(likesElements);
-      likesElements.appendChild(likeAdd);
-      likesElements.appendChild(smallLogo);
-      smallBoxContent.appendChild(smallPhotographerPrice);
+  const smallBoxContent = document.getElementById('smallBoxContent');
+  const likesElements = document.createElement('div');
+        likesElements.classList.add('likesElements');
+  
+  let likeAdd = document.createElement('div');
+        likeAdd.classList.add('likeAdd');
+        likeAdd.textContent = sumLikes;
+  
+  const likeSvg = `assets/images/butons/like-black.svg`;
+  
+  const smallLogo = document.createElement('img');
+        smallLogo.classList.add('smallLogo');
+        smallLogo.setAttribute("src", likeSvg);
+  
+  const smallPhotographerPrice = document.createElement('div');
+        smallPhotographerPrice.classList.add('boxPrice');
+        smallPhotographerPrice.textContent = infoPhotographer.price + "€/jour"; 
+      
+        smallBoxContent.appendChild(likesElements);
+        likesElements.appendChild(likeAdd);
+        likesElements.appendChild(smallLogo);
+        smallBoxContent.appendChild(smallPhotographerPrice);
 
-  }
-
-function openLightBox (e, gallery) {
-  let getTittle = e.target.parentElement.getElementsByClassName('mediaTitle')[0].textContent
-  lightBoxTitle.textContent = getTittle;
-  const setImg = gallery.getAttribute('src')     
-  modal.classList.remove('hidden')
-  lightBoxImg.setAttribute('src', setImg)
 }
 
-function nextImage (){
-  let nextIndex = currentIndexMedia+1;
-  currentIndexMedia = currentIndexMedia+1
+function moveImg (direction){
+  let nextIndex = currentIndexMedia+direction;
+  currentIndexMedia = currentIndexMedia+direction;
   setNextImg = `assets/medias/${infoMedia[nextIndex].image}`;
-  lightBoxImg.setAttribute('src', setNextImg)
-  lightBoxTitle.textContent = infoMedia[nextIndex].title
+  setNexVideo = `assets/medias/${infoMedia[nextIndex].video}`;
+  console.log(infoMedia);
+  // lightBoxImg.setAttribute('src', setNextImg);
+  // lightBoxVideo.setAttribute('src', setNexVideo);
+  lightBoxTitle.textContent = infoMedia[nextIndex].title; 
+
+  if(setNexVideo = setNexVideo){
+    console.log(setNexVideo);
+    lightBoxVideo.setAttribute('src', setNexVideo);
+    lightBoxVideo.classList.remove('hidden');
+    lightBoxImg.classList.add('hidden');
+  } else if (setNextImg = setNextImg) {
+    lightBoxImg.setAttribute('src', setNextImg);
+    lightBoxImg.classList.remove('hidden');
+    lightBoxVideo.classList.add('hidden');
+  }
+   
 }
 
-function prevImage (){
-  let prevIndex = currentIndexMedia-1;
-  currentIndexMedia = currentIndexMedia-1
-  setNextImg = `assets/medias/${infoMedia[prevIndex].image}`;
-  lightBoxImg.setAttribute('src', setNextImg)
-  lightBoxTitle.textContent = infoMedia[prevIndex].title 
-}
+// function prevImage (){
+//   let prevIndex = currentIndexMedia-1;
+//   currentIndexMedia = currentIndexMedia-1
+//   setNextImg = `assets/medias/${infoMedia[prevIndex].image}`;
+//   lightBoxImg.setAttribute('src', setNextImg)
+//   lightBoxTitle.textContent = infoMedia[prevIndex].title 
+// }
 
 
 
