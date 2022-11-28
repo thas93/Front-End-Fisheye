@@ -255,22 +255,21 @@ function moveImg (direction){
   currentIndexMedia = currentIndexMedia+direction;
   setNextImg = `assets/medias/${infoMedia[nextIndex].image}`;
   setNexVideo = `assets/medias/${infoMedia[nextIndex].video}`;
-  console.log(infoMedia);
-  // lightBoxImg.setAttribute('src', setNextImg);
-  // lightBoxVideo.setAttribute('src', setNexVideo);
   lightBoxTitle.textContent = infoMedia[nextIndex].title; 
-
-  if(setNexVideo = setNexVideo){
-    console.log(setNexVideo);
+  
+  if( lightBoxVideo.src === setNexVideo){ 
     lightBoxVideo.setAttribute('src', setNexVideo);
-    lightBoxVideo.classList.remove('hidden');
     lightBoxImg.classList.add('hidden');
-  } else if (setNextImg = setNextImg) {
+    lightBoxVideo.classList.remove('hidden');
+    console.log('if'); 
+  }else {
+    console.log('else');
+    setNextImg = `assets/medias/${infoMedia[nextIndex].image}`;
     lightBoxImg.setAttribute('src', setNextImg);
     lightBoxImg.classList.remove('hidden');
     lightBoxVideo.classList.add('hidden');
   }
-   
+
 }
 
 // function prevImage (){
