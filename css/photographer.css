@@ -382,6 +382,16 @@ body #smallBoxContent .likeAdd{
     width: 100%;
     height: 90%;
     border-radius: 5px;
+    object-fit:contain;
+    object-position: 50% 50%;
+    padding: 0px;
+    margin: 0px;
+}
+
+#modalVideo{
+    width: 100%;
+    height: 90%;
+    border-radius: 5px;
     object-fit:cover;
     padding: 0px;
     margin: 0px;

@@ -66,6 +66,28 @@ async function fetchMedia() {
     infoMedia.forEach((photographerMedia) => {
     displayMedia(photographerMedia)
   });
+
+  console.log(infoMedia);
+  console.log(likeArray);
+
+  // function popularity(){
+  //   let newInfo = infoMedia.sort((a, b) => (a.likes < b.likes ? 1 : -1))
+  //   console.log(newInfo, 'newtable');
+  // } 
+
+  // popularity();
+
+  // function date(){
+  //   let newDate = infoMedia.sort((a, b) => (a.date < b.date ? 1 : -1))
+  //   console.log(newDate, 'newDate'); 
+  // }
+  // date();
+
+  // function name(){
+  //   let newName = infoMedia.sort((a, b) => (a.title > b.title ? 1 : -1))
+  //   console.log(newName, 'newName'); 
+  // }
+  // name();
   
 
 /****************************************************************************************LIGHT-BOX*********************************************************************/         
@@ -253,11 +275,12 @@ function smallBoxContent(){
 function moveImg (direction){
   let nextIndex = currentIndexMedia+direction;
   currentIndexMedia = currentIndexMedia+direction;
+  let typeMedia = infoMedia[nextIndex].image ? 'image' : 'video';
   setNextImg = `assets/medias/${infoMedia[nextIndex].image}`;
   setNexVideo = `assets/medias/${infoMedia[nextIndex].video}`;
   lightBoxTitle.textContent = infoMedia[nextIndex].title; 
   
-  if( lightBoxVideo.src === setNexVideo){ 
+  if( typeMedia === 'video'){ 
     lightBoxVideo.setAttribute('src', setNexVideo);
     lightBoxImg.classList.add('hidden');
     lightBoxVideo.classList.remove('hidden');
