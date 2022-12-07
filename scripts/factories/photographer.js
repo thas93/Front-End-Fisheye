@@ -11,7 +11,6 @@ function photographerFactory(data) {
 
         const photographer = document.getElementsByClassName('photographer_name')
         
-        
         const img = document.createElement('img'); // Image creation
         img.setAttribute("src", picture);
         img.setAttribute("alt", "Photo du photographe" + " " + name,);

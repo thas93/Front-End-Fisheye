@@ -35,6 +35,10 @@ main img {
     object-fit: cover;
 }
 
+.hiddenScroll{
+    overflow: hidden; 
+}
+
 #pName{
     margin-left: 50px;
     margin-top: 71px;
