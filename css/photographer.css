@@ -1,7 +1,5 @@
 
-#contact_modal {
-    display: none;
-}
+
 
 body{    
     font-family: "DM Sans", sans-serif;
@@ -9,6 +7,15 @@ body{
     margin-left: 50px;
     
 }
+
+#contact_modal {
+    display: none;
+}
+
+.modal header{
+    display: flex;
+    flex-direction: row;
+} 
 /*********************************************************************************************HEADER************************************************************/
 header .logo {
     height: 50px;
@@ -368,8 +375,7 @@ body #smallBoxContent .likeAdd{
 }
 
 .hidden{
-    display: none;
-    
+    display: none !important;    
 }
 
 #lightBox .lightBoxContent{

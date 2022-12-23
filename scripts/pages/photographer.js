@@ -12,7 +12,10 @@ const photographerId = extractId.get("id");
 /********************************************************************************DISPLAY PHOTOGRAPHER INFO********************************************************/
 
 let infoPhotographer = "";
+let infoPhotographerArrays = [];
 let photographerArray = [];
+let objectReturn = ""
+
 
 async function fetchData() {
   await fetch("./data/photographers.json")
@@ -21,7 +24,8 @@ async function fetchData() {
  
   photographerArray.filter((photographerElement) => {
     if (photographerElement.id == photographerId) {
-      infoPhotographer = photographerElement;     
+      infoPhotographer = photographerElement;
+      infoPhotographerArrays.push(photographerElement);
     }
   });
   
@@ -31,10 +35,11 @@ async function fetchData() {
 
 fetchData();
 
+
 function profilCreation(){
   const pName = document.getElementById('pName');
   pName.textContent = infoPhotographer.name;
-
+ 
   const pLocation = document.getElementById('pLocation');
   pLocation.textContent = infoPhotographer.city + "," + " " + infoPhotographer.country;
       
@@ -46,6 +51,7 @@ function profilCreation(){
   const pImg = document.getElementById('pImg');
   pImg.setAttribute("src", picture);
 }
+
 
 /***********************************************************************************DISPLAY PHOTOGRAPHER MEDIAS*****************************************************/
 let mediaArray = [];
@@ -70,24 +76,10 @@ async function fetchMedia() {
 
       if (currentFilter === 'popularity'){
         popularity();
-      }
+      } 
     
-    infoMedia.forEach((photographerMedia) => {  
-      displayMedia(photographerMedia);   
-  });
-         
-  //  function getIndex(){
-  //    for (let i = 0; i < gallerys.length; i++) {
-  //       let gallery = gallerys[i]
-  //         gallery.addEventListener('click', function (e){
-  //           e.preventDefault(); 
-  //           console.log('open Light Box');
-  //           openLightBox (e, gallery, gallerys)
-  //             currentIndexMedia = i;
-  //         })     
-  //     }  
-  //   }
-  // // getIndex();
+ 
+
   smallBoxContent()   
 };
 
@@ -151,12 +143,11 @@ function displayMedia(photographerMedia){
             e.preventDefault();
             likePhoto(e);
           })
-        
+                
 }
 
 /******************************************************************************************LIGHT-BOX***********************************************************************/
 const body = document.getElementsByTagName('body')[0];
-console.log(body);
 let lightBoxTitle = document.getElementsByClassName('lightBoxImgTitle')[0];
 const modal = document.getElementById('lightBox');       
 let lightBoxImg = document.getElementById('modalImg');   
@@ -172,12 +163,12 @@ const titleItem = document.getElementsByClassName('title-item')[0];
 const gallerys = document.getElementsByClassName('mediaContent');
 
 function filterLightBox (){
+  console.log(gallerys);
   for (let i = 0; i < gallerys.length; i++) {
     let gallery = gallerys[i]
     gallery.addEventListener('click', function (e){
     e.preventDefault(); 
-    openLightBox (e, gallery, gallerys)
-    currentIndexMedia = i;
+    openLightBox (e, gallery, i)
     })     
   }
 };
@@ -188,8 +179,8 @@ function dateFilter(){
   document.getElementById('media-section').innerHTML = "";
   newDate.forEach((photographerMedia) => {
   displayMedia(photographerMedia);
-  filterLightBox ();
   });
+  filterLightBox (); 
 };
 
 function titleFilter(){
@@ -198,21 +189,23 @@ function titleFilter(){
   console.log(newTitle, 'title');
   document.getElementById('media-section').innerHTML = "";
   newTitle.forEach((photographerMedia) => {
-    displayMedia(photographerMedia);
-    filterLightBox ();
+    displayMedia(photographerMedia);  
   });
+  filterLightBox (); 
 };
 
 function popularity(){
   const newInfo = infoMedia.sort((a, b) => (a.likes < b.likes ? 1 : -1))
   document.getElementById('media-section').innerHTML = "";
   newInfo.forEach((photographerMedia) => {
-    displayMedia(photographerMedia);
-    filterLightBox ();
+    displayMedia(photographerMedia); 
   });
+  filterLightBox (); 
 };
 
-function openLightBox (e, gallery) {
+function openLightBox (e, gallery, index) {
+  currentIndexMedia = index;
+  hideArrow();
   body.classList.add('hiddenScroll')
   modal.classList.remove('hidden');
   let getTittle = e.target.parentElement.getElementsByClassName('mediaTitle')[0].textContent;
@@ -291,22 +284,52 @@ function smallBoxContent(){
 };
 
 function moveImg (direction){
-  let nextIndex = currentIndexMedia+direction;
-  currentIndexMedia = currentIndexMedia+direction;
-  let typeMedia = infoMedia[nextIndex].image ? 'image' : 'video';
-  setNextImg = `assets/medias/${infoMedia[nextIndex].image}`;
-  setNexVideo = `assets/medias/${infoMedia[nextIndex].video}`;
-  lightBoxTitle.textContent = infoMedia[nextIndex].title; 
-  
-  if( typeMedia === 'video'){ 
-    lightBoxVideo.setAttribute('src', setNexVideo);
-    lightBoxImg.classList.add('hidden');
-    lightBoxVideo.classList.remove('hidden'); 
-  } else {
+ 
+  console.log(currentIndexMedia);
+  console.log(infoMedia.length);
+  if(currentIndexMedia >= 0 || currentIndexMedia < infoMedia.length -1){
+    
+    let nextIndex = currentIndexMedia+direction;
+    console.log('next', nextIndex);
+    currentIndexMedia = currentIndexMedia+direction;
+    hideArrow();
+    let typeMedia = infoMedia[nextIndex].image ? 'image' : 'video';
     setNextImg = `assets/medias/${infoMedia[nextIndex].image}`;
-    lightBoxImg.setAttribute('src', setNextImg);
-    lightBoxImg.classList.remove('hidden');
-    lightBoxVideo.classList.add('hidden');
+    setNexVideo = `assets/medias/${infoMedia[nextIndex].video}`;
+    lightBoxTitle.textContent = infoMedia[nextIndex].title; 
+    
+    if( typeMedia === 'video'){ 
+      lightBoxVideo.setAttribute('src', setNexVideo);
+      lightBoxImg.classList.add('hidden');
+      lightBoxVideo.classList.remove('hidden'); 
+    } else{
+      setNextImg = `assets/medias/${infoMedia[nextIndex].image}`;
+      lightBoxImg.setAttribute('src', setNextImg);
+      lightBoxImg.classList.remove('hidden');
+      lightBoxVideo.classList.add('hidden');
+    }
+
+  } else {
+    next.classList.add('hiden');
+    console.log('test');
+  }
+};
+
+function hideArrow (){
+  console.log('hideArrow', currentIndexMedia);
+  if (currentIndexMedia == 0) {
+    console.log('prev', prev);
+    prev.classList.add('hidden');
+    next.classList.remove('hidden');
+
+  } else if (currentIndexMedia == (infoMedia.length -1)){
+    next.classList.add('hidden');
+    prev.classList.remove('hidden');
+  }  
+  else {
+    console.log('remove');
+    prev.classList.remove('hidden');
+    next.classList.remove('hidden');
   }
 };
 
