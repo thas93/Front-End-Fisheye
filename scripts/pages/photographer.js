@@ -39,7 +39,10 @@ fetchData();
 function profilCreation(){
   const pName = document.getElementById('pName');
   pName.textContent = infoPhotographer.name;
- 
+  
+  let contactName = document.getElementsByClassName('contactName')[0];
+  contactName.textContent = infoPhotographer.name;
+  
   const pLocation = document.getElementById('pLocation');
   pLocation.textContent = infoPhotographer.city + "," + " " + infoPhotographer.country;
       
@@ -163,7 +166,6 @@ const titleItem = document.getElementsByClassName('title-item')[0];
 const gallerys = document.getElementsByClassName('mediaContent');
 
 function filterLightBox (){
-  console.log(gallerys);
   for (let i = 0; i < gallerys.length; i++) {
     let gallery = gallerys[i]
     gallery.addEventListener('click', function (e){
@@ -290,7 +292,6 @@ function moveImg (direction){
   if(currentIndexMedia >= 0 || currentIndexMedia < infoMedia.length -1){
     
     let nextIndex = currentIndexMedia+direction;
-    console.log('next', nextIndex);
     currentIndexMedia = currentIndexMedia+direction;
     hideArrow();
     let typeMedia = infoMedia[nextIndex].image ? 'image' : 'video';
@@ -309,14 +310,12 @@ function moveImg (direction){
       lightBoxVideo.classList.add('hidden');
     }
 
-  } else {
-    next.classList.add('hiden');
-    console.log('test');
-  }
+    } else {
+      next.classList.add('hiden');
+    }
 };
 
 function hideArrow (){
-  console.log('hideArrow', currentIndexMedia);
   if (currentIndexMedia == 0) {
     console.log('prev', prev);
     prev.classList.add('hidden');

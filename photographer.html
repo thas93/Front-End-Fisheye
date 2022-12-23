@@ -1,88 +1,99 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <a href="./index.html">
-        <img src="assets/images/logo.png" class="logo" />
-      </a>
-    </header>
-    <main id="main">
-      <div class="photographer-header">
-        <div class="pInformation">
-          <h2 id="pName"></h2>
-          <h3 id ="pLocation"></h3>
-          <h3 id ="pTag"></h3>
-        </div>          
-          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-          <img src="" alt="" id="pImg">
+<html lang="fr">
+
+<head>
+  <link href="css/photographer.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+
+  <header>
+    <a href="./index.html">
+      <img src="assets/images/logo.png" alt="Logo fisheyes" class="logo">
+    </a>
+  </header>
+
+  <main id="main">
+    <div class="photographer-header">
+      <div class="pInformation">
+        <h2 id="pName"></h2>
+        <h3 id="pLocation"></h3>
+        <h3 id="pTag"></h3>
       </div>
-      <div class="filterSection">
-        <div class="filterBy">Trier par</div>
-        <div class="btnSection">
-          <button class="btn">
-            <div class="popularity">Popularité</div>
-            <img src="/assets/images/butons/chevron.svg" alt="">
-          </button>
-          <div class="menu-items">
-            <div class="date-item">Date</div>
-            <div class="title-item">Titre</div>
-          </div>
+      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <img alt="Portrait du photographe" id="pImg">
+    </div>
+    <div class="filterSection">
+      <div class="filterBy">Trier par</div>
+      <div class="btnSection">
+        <button class="btn">
+          <p class="popularity">Popularité</p>
+          <img src="/assets/images/butons/chevron.svg" alt="chevron">
+        </button>
+        <div class="menu-items">
+          <div class="date-item">Date</div>
+          <div class="title-item">Titre</div>
         </div>
       </div>
-      <div id="media-section"></div>   
-</main>
-
-<!-- ************************************LIGHT-BOX**************************** -->
-<div id="lightBox" class="hidden">  
-  <div class="lightBoxContent">
-    <img class="rightButon" src="/assets/images/butons/right-buton.svg" alt="">
-    <div class="imgTitle">
-      <img id="modalImg" class="lightBoxImg" alt="">
-      <video autoplay="true" loop="true" id="modalVideo" class="lightBoxVideo" alt=""></video>
-      <h3 class="lightBoxImgTitle"></h3>
     </div>
-    <div class="leftClose">
-      <img class="closeButon" src="/assets/images/butons/close-buton.svg" alt="">
-      <img class="leftButon" src="/assets/images/butons/left-buton.svg" alt=""> 
+    <div id="media-section"></div>
+    <!--********************************** SMAL-BOX******************************* -->
+    <div id="smallBoxContent"></div>
+    <!-- ************************************LIGHT-BOX**************************** -->
+    <div id="lightBox" class="hidden">
+      <div class="lightBoxContent">
+        <img class="rightButon" src="/assets/images/butons/right-buton.svg" alt="">
+        <div class="imgTitle">
+          <img id="modalImg" class="lightBoxImg" alt="">
+          <video autoplay loop id="modalVideo" class="lightBoxVideo"></video>
+          <h3 class="lightBoxImgTitle"></h3>
+        </div>
+        <div class="leftClose">
+          <img class="closeButon" src="/assets/images/butons/close-buton.svg" alt="">
+          <img class="leftButon" src="/assets/images/butons/left-buton.svg" alt="">
+        </div>
+      </div>
     </div>
-  </div>    
-</div>
-<!-- ***************************************************************************** -->
-
+    <!-- ***************************************************************************** -->
     <div id="contact_modal">
-			<div class="modal">
-				<header>
+      <div class="modal">
+        <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-          <div class="contactName">
-
-          </div>
+          <img src="assets/icons/close.svg" alt="button fermer" onclick="closeModal()" />
+          <div class="contactName"></div>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>           
-						<input />
+        <form>
+          <div>
+            <label>Prénom</label>
+            <input/>
             <label for="">Nom</label>
-            <input />
-					</div>
+            <input/>
+            <label>Email</label>
+            <input/>
+            <label>Votre message</label>
+            <input/>
+          </div>
           <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-<!--********************************** SMAL-BOX******************************* -->
-<div id="smallBoxContent">
-  
-</div>
-<!--***************************************************************************-->
-    <script src="scripts/factories/photographer.js"></script>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-  </body>
+        </form>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+  <!--***************************************************************************-->
+  <script src="scripts/factories/photographer.js"></script>
+  <script src="/scripts/pages/photographer.js"></script>
+  <script src="/scripts/utils/contactForm.js"></script>
+</body>
+
 </html>
