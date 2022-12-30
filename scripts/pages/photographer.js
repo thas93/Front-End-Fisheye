@@ -164,6 +164,8 @@ const popularitys = document.getElementsByClassName('popularity')[0];
 const dateItem = document.getElementsByClassName('date-item')[0];
 const titleItem = document.getElementsByClassName('title-item')[0];
 const gallerys = document.getElementsByClassName('mediaContent');
+const downBtn = document.getElementsByClassName('downBtn')[0];
+const menuItems = document.getElementsByClassName('menu-items')[0];
 
 function filterLightBox (){
   for (let i = 0; i < gallerys.length; i++) {
@@ -182,6 +184,8 @@ function dateFilter(){
   newDate.forEach((photographerMedia) => {
   displayMedia(photographerMedia);
   });
+  popularitys.innerHTML = 'Date';
+  menuItems.classList.add('hidden');
   filterLightBox (); 
 };
 
@@ -191,8 +195,10 @@ function titleFilter(){
   console.log(newTitle, 'title');
   document.getElementById('media-section').innerHTML = "";
   newTitle.forEach((photographerMedia) => {
-    displayMedia(photographerMedia);  
+    displayMedia(photographerMedia); 
   });
+  popularitys.innerHTML = 'Titre';
+  menuItems.classList.add('hidden'); 
   filterLightBox (); 
 };
 
@@ -331,6 +337,12 @@ function hideArrow (){
     next.classList.remove('hidden');
   }
 };
+ function toogleFilter (){
+  downBtn.classList.toggle('toggle');
+  menuItems.classList.toggle('hidden');
+
+ };
+
 
 dateItem.addEventListener('click', function (e){
   e.preventDefault();
@@ -365,6 +377,11 @@ close.addEventListener('click', function (e){
   body.classList.remove('hiddenScroll');     
 }); 
 
+downBtn.addEventListener('click', function(e){
+  e.preventDefault();
+  toogleFilter ();
+  console.log('btnDown', downBtn );
+})
 
 
 

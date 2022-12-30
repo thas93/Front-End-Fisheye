@@ -8,43 +8,40 @@
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <title>Fisheye - photographe </title>
 </head>
-
 <body>
-
-  <header>
+  <header aria-label="header">
     <a href="./index.html">
       <img src="assets/images/logo.png" alt="Logo fisheyes" class="logo">
     </a>
   </header>
-
-  <main id="main">
-    <div class="photographer-header">
+  <main id="main" >
+    <div class="photographer-header" role="banner">
       <div class="pInformation">
         <h2 id="pName"></h2>
         <h3 id="pLocation"></h3>
         <h3 id="pTag"></h3>
       </div>
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button" onclick="displayModal()" role="contact-button">Contactez-moi</button>
       <img alt="Portrait du photographe" id="pImg">
     </div>
-    <div class="filterSection">
+    <div class="filterSection" role="filtre">
       <div class="filterBy">Trier par</div>
       <div class="btnSection">
         <button class="btn">
           <p class="popularity">Popularité</p>
-          <img src="/assets/images/butons/chevron.svg" alt="chevron">
+          <img src="/assets/images/butons/chevron.svg"  class='downBtn' alt="chevron">
         </button>
-        <div class="menu-items">
+        <div class="menu-items hidden">
           <div class="date-item">Date</div>
           <div class="title-item">Titre</div>
         </div>
       </div>
     </div>
-    <div id="media-section"></div>
+    <div id="media-section" role="media"></div>
     <!--********************************** SMAL-BOX******************************* -->
-    <div id="smallBoxContent"></div>
+    <div id="smallBoxContent" role="encart"></div>
     <!-- ************************************LIGHT-BOX**************************** -->
-    <div id="lightBox" class="hidden">
+    <div id="lightBox" class="hidden" role="lightBox">
       <div class="lightBoxContent">
         <img class="rightButon" src="/assets/images/butons/right-buton.svg" alt="">
         <div class="imgTitle">
@@ -59,7 +56,7 @@
       </div>
     </div>
     <!-- ***************************************************************************** -->
-    <div id="contact_modal">
+    <div id="contact_modal" role="formulaire">
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
@@ -82,13 +79,6 @@
       </div>
     </div>
   </main>
-
-
-
-
-
-
-
 
   <!--***************************************************************************-->
   <script src="scripts/factories/photographer.js"></script>
