@@ -6,7 +6,13 @@ body {
 }
 
 #contact_modal {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #fffefe;
+    z-index: 199;
 }
 
 .modal header {
@@ -223,14 +229,7 @@ main .filterSection .menu-items .popularity-item {
 }
 
 /**************************************************************************************FORM****************************************************************************/
-#contact_modal {
-    /* position: fixed; */
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: #fffefe;
-    /* z-index: 220; */
-}
+
 
 .modal {
     border-radius: 5px;

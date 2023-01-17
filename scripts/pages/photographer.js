@@ -167,7 +167,7 @@ const titleItem = document.getElementsByClassName('title-item')[0];
 const gallerys = document.getElementsByClassName('mediaContent');
 const downBtn = document.getElementsByClassName('downBtn')[0];
 const menuItems = document.getElementsByClassName('menu-items')[0];
-popularityItem.classList.add('hidden');
+popularityItem.remove();
 
 function filterLightBox (){
   for (let i = 0; i < gallerys.length; i++) {
@@ -188,10 +188,11 @@ function dateFilter(){
   });
   filterLightBox ();
   menuItems.classList.add('hidden');
+ 
   activeFilter.innerHTML = dateItem.innerHTML;
-  dateItem.classList.add('hidden');
-  popularityItem.classList.remove('hidden');
-  titleItem.classList.remove('hidden');
+  dateItem.remove();
+  menuItems.appendChild(popularityItem);
+  menuItems.appendChild(titleItem);
 };
 
 function titleFilter(){
@@ -203,11 +204,13 @@ function titleFilter(){
     displayMedia(photographerMedia); 
   });
   filterLightBox ();
+
+ 
   menuItems.classList.add('hidden');
   activeFilter.innerHTML = titleItem.innerHTML;
-  titleItem.classList.add('hidden');
-  popularityItem.classList.remove('hidden');
-  dateItem.classList.remove('hidden'); 
+  titleItem.remove();
+  menuItems.appendChild(popularityItem);
+  menuItems.appendChild(dateItem);
 };
 
 function popularityFilter(){
@@ -217,12 +220,14 @@ function popularityFilter(){
     displayMedia(photographerMedia); 
   });
   filterLightBox ();
+  
   menuItems.classList.add('hidden');
   activeFilter.innerHTML = popularityItem.innerHTML;
-  popularityItem.classList.add('hidden');
-  titleItem.classList.remove('hidden');
-  dateItem.classList.remove('hidden');  
+  popularityItem.remove();
+  menuItems.appendChild(titleItem);
+  menuItems.appendChild(dateItem);  
 };
+
 
 function popularity(){
   const newInfo = infoMedia.sort((a, b) => (a.likes < b.likes ? 1 : -1))
@@ -379,18 +384,21 @@ dateItem.addEventListener('click', function (e){
   e.preventDefault();
   dateFilter();
 
+
  
 });
 
 titleItem.addEventListener('click', function (e){
   e.preventDefault();
   titleFilter();
+ 
   
 });
 
 popularityItem.addEventListener('click', function (e){
   e.preventDefault();
   popularityFilter();
+
  
 });
 
@@ -415,6 +423,7 @@ close.addEventListener('click', function (e){
 downBtn.addEventListener('click', function(e){
   e.preventDefault();
   toogleFilter ();
+  console.log('down', toogleFilter);
 })
 
 
