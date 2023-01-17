@@ -160,12 +160,14 @@ const prev = document.getElementsByClassName('rightButon')[0];
 const close = document.getElementsByClassName('closeButon')[0];
 const likeCounts = document.getElementsByClassName('mediaLike');
 let getLightBoxImg = document.getElementsByClassName('imgLightBox')[0];
-const popularitys = document.getElementsByClassName('popularity')[0];
+const activeFilter = document.getElementsByClassName('activeFilter')[0];
+const popularityItem = document.getElementsByClassName('popularity-item')[0];
 const dateItem = document.getElementsByClassName('date-item')[0];
 const titleItem = document.getElementsByClassName('title-item')[0];
 const gallerys = document.getElementsByClassName('mediaContent');
 const downBtn = document.getElementsByClassName('downBtn')[0];
 const menuItems = document.getElementsByClassName('menu-items')[0];
+popularityItem.classList.add('hidden');
 
 function filterLightBox (){
   for (let i = 0; i < gallerys.length; i++) {
@@ -184,9 +186,12 @@ function dateFilter(){
   newDate.forEach((photographerMedia) => {
   displayMedia(photographerMedia);
   });
-  popularitys.innerHTML = 'Date';
+  filterLightBox ();
   menuItems.classList.add('hidden');
-  filterLightBox (); 
+  activeFilter.innerHTML = dateItem.innerHTML;
+  dateItem.classList.add('hidden');
+  popularityItem.classList.remove('hidden');
+  titleItem.classList.remove('hidden');
 };
 
 function titleFilter(){
@@ -197,9 +202,26 @@ function titleFilter(){
   newTitle.forEach((photographerMedia) => {
     displayMedia(photographerMedia); 
   });
-  popularitys.innerHTML = 'Titre';
-  menuItems.classList.add('hidden'); 
-  filterLightBox (); 
+  filterLightBox ();
+  menuItems.classList.add('hidden');
+  activeFilter.innerHTML = titleItem.innerHTML;
+  titleItem.classList.add('hidden');
+  popularityItem.classList.remove('hidden');
+  dateItem.classList.remove('hidden'); 
+};
+
+function popularityFilter(){
+  const newInfo = infoMedia.sort((a, b) => (a.likes < b.likes ? 1 : -1))
+  document.getElementById('media-section').innerHTML = "";
+  newInfo.forEach((photographerMedia) => {
+    displayMedia(photographerMedia); 
+  });
+  filterLightBox ();
+  menuItems.classList.add('hidden');
+  activeFilter.innerHTML = popularityItem.innerHTML;
+  popularityItem.classList.add('hidden');
+  titleItem.classList.remove('hidden');
+  dateItem.classList.remove('hidden');  
 };
 
 function popularity(){
@@ -208,7 +230,12 @@ function popularity(){
   newInfo.forEach((photographerMedia) => {
     displayMedia(photographerMedia); 
   });
+
   filterLightBox (); 
+};
+
+function hiddenFilter(){
+ 
 };
 
 function openLightBox (e, gallery, index) {
@@ -337,26 +364,34 @@ function hideArrow (){
     next.classList.remove('hidden');
   }
 };
- function toogleFilter (){
+
+function toogleFilter (){
   downBtn.classList.toggle('toggle');
   menuItems.classList.toggle('hidden');
+};
 
- };
-
+// activeFilter.addEventListener('click', function (e){
+//   e.preventDefault();
+//   popularity();
+// });
 
 dateItem.addEventListener('click', function (e){
   e.preventDefault();
   dateFilter();
-});
 
-popularitys.addEventListener('click', function (e){
-  e.preventDefault();
-  popularity();
+ 
 });
 
 titleItem.addEventListener('click', function (e){
   e.preventDefault();
   titleFilter();
+  
+});
+
+popularityItem.addEventListener('click', function (e){
+  e.preventDefault();
+  popularityFilter();
+ 
 });
 
 next.addEventListener('click', function (e){
@@ -380,7 +415,6 @@ close.addEventListener('click', function (e){
 downBtn.addEventListener('click', function(e){
   e.preventDefault();
   toogleFilter ();
-  console.log('btnDown', downBtn );
 })
 
 

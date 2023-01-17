@@ -11,6 +11,9 @@ function photographerFactory(data) {
 
         const photographer = document.getElementsByClassName('photographer_name')
         
+        const photogrpherCard = document.createElement('div')
+        photogrpherCard.classList.add("photogrpherCard")
+
         const img = document.createElement('img'); // Image creation
         img.setAttribute("src", picture);
         img.setAttribute("alt", "Photo du photographe" + " " + name,);
@@ -21,11 +24,12 @@ function photographerFactory(data) {
         nameTag.classList.add("photographer_name");
         nameTag.setAttribute("id", id);
         nameTag.setAttribute("aria-label","la localisation du photographe" + " " + name + " " + "est à " + " " + city);
-        nameTag.setAttribute("href", "./photographer.html?id=" + id)
+        nameTag.setAttribute("role", "link");
+        nameTag.setAttribute("href", "./photographer.html?id=" + id);
         
         const locationTag = document.createElement('h3') // Location creation
         locationTag.textContent = city + "," + " " + country;
-        locationTag.classList.add("photographer_loc")
+        locationTag.classList.add("photographer_loc");
     
         const taglineTag = document.createElement('h3'); // Tagline creation
         taglineTag.textContent = tagline;
@@ -34,14 +38,13 @@ function photographerFactory(data) {
         const priceTag = document.createElement('h3'); // Price creation
         priceTag.textContent = price + "€/jour";
         priceTag.classList.add("photographer_price");
-  
-       
-        article.appendChild(img);
-        article.appendChild(nameTag);
+        
+        article.appendChild(photogrpherCard)
+        photogrpherCard.appendChild(img)
+        photogrpherCard.appendChild(nameTag)
         article.appendChild(locationTag);
         article.appendChild(taglineTag);
         article.appendChild(priceTag);
-       
         return (article);
         
     }

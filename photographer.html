@@ -11,7 +11,7 @@
 <body>
   <header aria-label="header">
     <a href="./index.html">
-      <img src="assets/images/logo.png" alt="Logo fisheyes" class="logo">
+      <img src="assets/images/logo.png" alt="Fisheye Home page" class="logo">
     </a>
   </header>
   <main id="main" >
@@ -28,12 +28,13 @@
       <div class="filterBy">Trier par</div>
       <div class="btnSection">
         <button class="btn">
-          <p class="popularity">Popularité</p>
+          <p class="activeFilter" role="selectFilter">Popularité</p>
           <img src="/assets/images/butons/chevron.svg"  class='downBtn' alt="chevron">
         </button>
-        <div class="menu-items hidden">
+        <div class="menu-items hidden">     
           <div class="date-item">Date</div>
-          <div class="title-item">Titre</div>
+          <div class="title-item">Titre</div>        
+          <div class="popularity-item">Popularité</div> 
         </div>
       </div>
     </div>
@@ -61,7 +62,7 @@
         <header>
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" alt="button fermer" onclick="closeModal()" />
-          <div class="contactName"></div>
+          <h1 class="contactName"></h1>
         </header>
         <form>
           <div>

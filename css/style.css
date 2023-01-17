@@ -1,4 +1,4 @@
-@import url("photographer.css");
+/* @import url("photographer.css"); */
 
 body {
     font-family: "DM Sans", sans-serif;
@@ -37,6 +37,17 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.photographer_section article .photogrpherCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform .3s;
+}
+
+.photographer_section article .photogrpherCard:hover{
+    transform: scale(1.1);
 }
 
 .photographer_section article .photographer_name {
@@ -85,6 +96,17 @@ h1 {
     height: 200px;
     width: 200px;
     border-radius: 50%;
+    object-fit: cover;
+    
+}
+
+.photographer_section article img:hover{
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .photographer_section article h3 {
